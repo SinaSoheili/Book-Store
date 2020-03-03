@@ -23,4 +23,6 @@
     $query_result = $db_comment->query($cmd);
     $s_result = $query_result->fetch_all(MYSQLI_ASSOC);
     print_r(json_encode($s_result));
+    $db_comment->close();
+
 ?>

@@ -20,5 +20,5 @@
     $query_result = $db_user->query($cmd);
     $s_result = $query_result->fetch_assoc();
     print_r(json_encode($s_result));
-
+    $db_user->close();
 ?>
