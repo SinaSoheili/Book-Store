@@ -1,6 +1,6 @@
 <?php
 
-    //Comment.php ? book_id =
+    //get_book_comment.php ? book_id =
 
     require_once ('DB_Info.php');
 
