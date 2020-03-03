@@ -1,5 +1,5 @@
 <?php
-
+    //user_get_specifications.php ? user_id =
     require_once('DB_Info.php');
 
     if(! isset($_GET["user_id"]))
