@@ -2,13 +2,9 @@ package ir.sinasoheili.bookstore.VIEW;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import ir.sinasoheili.bookstore.R;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
