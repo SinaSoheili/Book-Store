@@ -5,4 +5,9 @@
     <string name="bottom_navigation_item_search">جست و جو</string>
     <string name="bottom_navigation_item_profile">پروفایل</string>
 
+    <string name="home_page_list_group_top_discount">بییشترین تخفیف :</string>
+    <string name="home_page_list_group_top_sell">پرفروش ترین ها :</string>
+    <string name="home_page_list_group_newest">جدیدترین ها :</string>
+    <string name="home_page_list_group_favorite">مجبوب  ترین ها :</string>
+
 </resources>

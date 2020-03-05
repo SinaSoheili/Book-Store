@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import ir.sinasoheili.bookstore.R;
 
-public class Profile_Page extends Fragment
+public class Profile_Page_View extends Fragment
 {
     private Context context;
 

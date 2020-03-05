@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="homepage_margin_image_view_banner">15dp</dimen>
+    <dimen name="homepage_margin_each_element">8dp</dimen>
+
+    <dimen name="homepage_margin_title_group_right">25dp</dimen>
+    <dimen name="homepage_margin_title_group_left">10dp</dimen>
+    <dimen name="homepage_margin_title_group_top">20dp</dimen>
+    <dimen name="homepage_margin_title_group_bottom">10dp</dimen>
+
+    <dimen name="recycler_view_item_home_page_margin_element">4dp</dimen>
+
+</resources>

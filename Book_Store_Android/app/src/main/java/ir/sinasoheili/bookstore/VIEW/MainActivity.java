@@ -11,9 +11,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 {
     private BottomNavigationView bnv;
 
-    private Home_Page home_page;
-    private Search_Page search_page;
-    private Profile_Page profile_page;
+    private Home_Page_View home_page;
+    private Search_Page_View search_page;
+    private Profile_Page_View profile_page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bnv = findViewById(R.id.main_activity_bottom_navigation_view);
         bnv.setOnNavigationItemSelectedListener(this);
 
-        home_page = new Home_Page();
-        search_page = new Search_Page();
-        profile_page = new Profile_Page();
+        home_page = new Home_Page_View();
+        search_page = new Search_Page_View();
+        profile_page = new Profile_Page_View();
     }
 
     @Override

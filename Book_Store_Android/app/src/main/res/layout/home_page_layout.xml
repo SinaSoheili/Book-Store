@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="home page"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_page_list_group_top_sell"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/homepage_margin_title_group_right"
+            android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
+            android:layout_marginTop="@dimen/homepage_margin_title_group_top"
+            android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
+            android:textColor="@color/home_page_list_group"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_page_recyclerview_topsell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            app:cardBackgroundColor="@color/homePage_cardview_background_banner1">
+
+            <ImageView
+                android:id="@+id/home_page_imageview_banner1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:scaleType="fitXY">
+
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_page_list_group_top_discount"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/homepage_margin_title_group_right"
+            android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
+            android:layout_marginTop="@dimen/homepage_margin_title_group_top"
+            android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
+            android:textColor="@color/home_page_list_group"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_page_recyclerview_topdiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_page_list_group_newest"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/homepage_margin_title_group_right"
+            android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
+            android:layout_marginTop="@dimen/homepage_margin_title_group_top"
+            android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
+            android:textColor="@color/home_page_list_group"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_page_recyclerview_newest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            app:cardBackgroundColor="@color/homePage_cardview_background_banner2">
+
+            <ImageView
+                android:id="@+id/home_page_imageview_banner2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:scaleType="fitXY">
+
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_page_list_group_favorite"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/homepage_margin_title_group_right"
+            android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
+            android:layout_marginTop="@dimen/homepage_margin_title_group_top"
+            android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
+            android:textColor="@color/home_page_list_group"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_page_recyclerview_favoriot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/homepage_margin_each_element"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

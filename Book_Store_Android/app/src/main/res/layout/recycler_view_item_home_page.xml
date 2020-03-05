@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_item_recyclerview_homepage"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_margin="@dimen/recycler_view_item_home_page_margin_element"
+            android:src="@drawable/book"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_book_title_item_recyclerview_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recycler_view_item_home_page_margin_element"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@id/iv_item_recyclerview_homepage"
+            android:layout_alignRight="@id/iv_item_recyclerview_homepage"
+            android:text="name"
+            />
+
+        <TextView
+            android:id="@+id/tv_book_autor_item_recyclerview_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recycler_view_item_home_page_margin_element"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@id/tv_book_title_item_recyclerview_homepage"
+            android:layout_alignRight="@id/iv_item_recyclerview_homepage"
+            android:text="autor_name"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
