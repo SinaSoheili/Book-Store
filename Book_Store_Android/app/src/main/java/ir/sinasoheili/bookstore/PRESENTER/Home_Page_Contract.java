@@ -1,6 +1,7 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.RecyclerView;
 
