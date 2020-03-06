@@ -24,7 +24,7 @@
                 android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
-                android:textColor="@color/home_page_list_group"
+                android:textColor="@color/title_text_color"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -60,7 +60,7 @@
                 android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
-                android:textColor="@color/home_page_list_group"
+                android:textColor="@color/title_text_color"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -79,7 +79,7 @@
                 android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
-                android:textColor="@color/home_page_list_group"
+                android:textColor="@color/title_text_color"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -115,7 +115,7 @@
                 android:layout_marginLeft="@dimen/homepage_margin_title_group_left"
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
-                android:textColor="@color/home_page_list_group"
+                android:textColor="@color/title_text_color"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

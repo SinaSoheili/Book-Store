@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_sub_title">10sp</dimen>
+
     <dimen name="homepage_margin_image_view_banner">15dp</dimen>
     <dimen name="homepage_margin_each_element">8dp</dimen>
 
