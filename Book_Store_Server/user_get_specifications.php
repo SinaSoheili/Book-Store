@@ -10,6 +10,7 @@
 
     $user_id = (int)$_GET["user_id"];
     $db_user = new mysqli(HOST , USER_NAME , PASSWORD , DB_NAME);
+    $db_user->set_charset("utf8");
     if($db_user->connect_error === true)
     {
         echo "can not connect to databse";

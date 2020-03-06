@@ -13,6 +13,7 @@
     $book_id = (int)$_GET["book_id"];
 
     $db_comment = new mysqli(HOST , USER_NAME , PASSWORD , DB_NAME);
+    $db_comment->set_charset("utf8");
     if($db_comment->connect_error === true)
     {
         echo "can not connect to databse";

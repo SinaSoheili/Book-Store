@@ -63,6 +63,7 @@
     }
 
     $db_book = new mysqli(HOST , USER_NAME , PASSWORD , DB_NAME);
+    $db_book->set_charset("utf8");
     if($db_book->connect_error === true)
     {
         echo "can not connect to databse";
