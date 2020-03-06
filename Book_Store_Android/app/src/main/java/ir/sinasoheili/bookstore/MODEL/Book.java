@@ -2,7 +2,9 @@ package ir.sinasoheili.bookstore.MODEL;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Book
+import java.io.Serializable;
+
+public class Book implements Serializable
 {
     @SerializedName("ID")
     private int id;

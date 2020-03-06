@@ -1,6 +1,7 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
+import ir.sinasoheili.bookstore.VIEW.Book_Content;
 import ir.sinasoheili.bookstore.VIEW.Book_Item_Click_Listener;
 import ir.sinasoheili.bookstore.VIEW.RecyclerView_Adapter_HomePage;
 import retrofit2.Call;
@@ -56,7 +58,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
                     @Override
                     public void OnClick(Book book)
                     {
-                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context , Book_Content.class);
+                        intent.putExtra("BOOK" , book);
+                        context.startActivity(intent);
                     }
                 });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
@@ -93,7 +97,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
                     @Override
                     public void OnClick(Book book)
                     {
-                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context , Book_Content.class);
+                        intent.putExtra("BOOK" , book);
+                        context.startActivity(intent);
                     }
                 });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
@@ -130,7 +136,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
                     @Override
                     public void OnClick(Book book)
                     {
-                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context , Book_Content.class);
+                        intent.putExtra("BOOK" , book);
+                        context.startActivity(intent);
                     }
                 });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
@@ -167,7 +175,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
                     @Override
                     public void OnClick(Book book)
                     {
-                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context , Book_Content.class);
+                        intent.putExtra("BOOK" , book);
+                        context.startActivity(intent);
                     }
                 });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));

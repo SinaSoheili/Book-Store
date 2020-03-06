@@ -2,6 +2,7 @@ package ir.sinasoheili.bookstore.VIEW;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -105,7 +106,9 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Toast.makeText(context , items.get(position).getName() , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context , Book_Content.class);
+                intent.putExtra("BOOK" , items.get(position));
+                startActivity(intent);
             }
         });
     }
