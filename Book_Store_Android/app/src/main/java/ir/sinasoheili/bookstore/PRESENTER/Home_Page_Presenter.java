@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
+import ir.sinasoheili.bookstore.VIEW.Book_Item_Click_Listener;
 import ir.sinasoheili.bookstore.VIEW.RecyclerView_Adapter_HomePage;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +51,14 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context , items);
+                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+                {
+                    @Override
+                    public void OnClick(Book book)
+                    {
+                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
                 rv.setAdapter(adapter);
             }
@@ -80,7 +88,14 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context , items);
+                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+                {
+                    @Override
+                    public void OnClick(Book book)
+                    {
+                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
                 rv.setAdapter(adapter);
             }
@@ -110,7 +125,14 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context , items);
+                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+                {
+                    @Override
+                    public void OnClick(Book book)
+                    {
+                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
                 rv.setAdapter(adapter);
             }
@@ -140,7 +162,14 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context , items);
+                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+                {
+                    @Override
+                    public void OnClick(Book book)
+                    {
+                        Toast.makeText(context, book.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
                 rv.setAdapter(adapter);
             }
