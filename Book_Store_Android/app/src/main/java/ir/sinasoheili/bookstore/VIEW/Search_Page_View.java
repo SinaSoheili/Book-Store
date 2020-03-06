@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,10 +96,18 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
     }
 
     @Override
-    public void show_search_result(ArrayList<Book> items)
+    public void show_search_result(final ArrayList<Book> items)
     {
         ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(context , items);
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Toast.makeText(context , items.get(position).getName() , Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
