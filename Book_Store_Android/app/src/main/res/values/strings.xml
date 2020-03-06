@@ -10,4 +10,10 @@
     <string name="home_page_list_group_newest">جدیدترین ها :</string>
     <string name="home_page_list_group_favorite">مجبوب  ترین ها :</string>
 
+    <string name="search_page_filter_title">جست و جو بر اساس :</string>
+    <string name="search_page_filter_book_name">نام کتاب</string>
+    <string name="search_page_filter_book_autor_name">نام نویسنده</string>
+    <string name="search_page_filter_book_group_name">گروه</string>
+
+
 </resources>
