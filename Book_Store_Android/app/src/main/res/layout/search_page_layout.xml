@@ -4,11 +4,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/image_view_filter_Search_Page"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="search page"
+        android:layout_width="50dp"
+        android:layout_alignTop="@id/searchview_Search_page"
+        android:layout_alignBottom="@id/searchview_Search_page"
+        android:layout_alignParentRight="true"
+        android:padding="12dp"
+        android:src="@drawable/filter"
+        />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchview_Search_page"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/image_view_filter_Search_Page"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_filter_continer_Search_View"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchview_Search_page"
+        android:orientation="vertical"
+        android:layout_marginTop="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/search_page_filter_title"
+            android:textColor="@color/title_text_color"
+            android:layout_marginRight="10dp"
+            />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:padding="6dp">
+
+            <RadioButton
+                android:id="@+id/rb_group_name_Search_View"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/search_page_filter_book_group_name"
+                android:gravity="center"
+                android:layout_margin="4dp"
+                />
+
+            <RadioButton
+                android:id="@+id/rb_book_name_Search_View"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/search_page_filter_book_name"
+                android:gravity="center"
+                android:layout_margin="4dp"
+                />
+
+            <RadioButton
+                android:id="@+id/rb_autor_name_Search_View"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/search_page_filter_book_autor_name"
+                android:gravity="center"
+                android:layout_margin="4dp"
+                />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_Search_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout_filter_continer_Search_View"
+        android:layout_marginTop="10dp"
         />
 
 </RelativeLayout>

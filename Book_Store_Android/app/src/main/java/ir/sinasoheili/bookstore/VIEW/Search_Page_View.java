@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import ir.sinasoheili.bookstore.PRESENTER.Search_Page_Contract;
 import ir.sinasoheili.bookstore.R;
 
-public class Search_Page_View extends Fragment
+public class Search_Page_View extends Fragment implements Search_Page_Contract.Search_Page_view
 {
     private Context context;
 
