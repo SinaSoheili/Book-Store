@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
@@ -17,11 +18,13 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
 
     private ArrayList<Book> all_book;
     private Context context;
+    private Book_Item_Click_Listener listener;
 
-    public RecyclerView_Adapter_HomePage(Context context , ArrayList<Book> all_book)
+    public RecyclerView_Adapter_HomePage(Context context , ArrayList<Book> all_book , Book_Item_Click_Listener listener)
     {
         this.context = context;
         this.all_book = all_book;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,7 +40,7 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder_RecyclerView_HomePage holder, int position)
     {
-        holder.fill(all_book.get(position));
+        holder.fill(all_book.get(position) , listener);
     }
 
     @Override
@@ -48,19 +51,29 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
 
     public class ViewHolder_RecyclerView_HomePage extends RecyclerView.ViewHolder
     {
+        private CardView root_view;
         private ImageView iv_book;
         private TextView tv_book_title , tv_book_autor;
 
         public ViewHolder_RecyclerView_HomePage(@NonNull View itemView)
         {
             super(itemView);
+            root_view = itemView.findViewById(R.id.cv_item_recyclerview_homepage);
             iv_book = itemView.findViewById(R.id.iv_item_recyclerview_homepage);
             tv_book_title = itemView.findViewById(R.id.tv_book_title_item_recyclerview_homepage);
             tv_book_autor = itemView.findViewById(R.id.tv_book_autor_item_recyclerview_homepage);
         }
 
-        public void fill(Book book)
+        public void fill(final Book book , final Book_Item_Click_Listener listener)
         {
+            this.root_view.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    listener.OnClick(book);
+                }
+            });
             if(book.getFront_pic() != null)
             {
                 //TODO : download image

@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         init_obj();
+
+        bnv.setSelectedItemId(R.id.bottom_navigation_view_home_item);
     }
 
     private void init_obj()
