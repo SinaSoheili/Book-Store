@@ -41,6 +41,7 @@
             />
 
         <RadioGroup
+            android:id="@+id/radio_group_Search_View"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -59,16 +60,6 @@
                 />
 
             <RadioButton
-                android:id="@+id/rb_book_name_Search_View"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/search_page_filter_book_name"
-                android:gravity="center"
-                android:layout_margin="4dp"
-                />
-
-            <RadioButton
                 android:id="@+id/rb_autor_name_Search_View"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -78,12 +69,23 @@
                 android:layout_margin="4dp"
                 />
 
+            <RadioButton
+                android:id="@+id/rb_book_name_Search_View"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/search_page_filter_book_name"
+                android:gravity="center"
+                android:layout_margin="4dp"
+                android:checked="true"
+                />
+
         </RadioGroup>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_Search_page"
+    <ListView
+        android:id="@+id/list_view_Search_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_filter_continer_Search_View"
