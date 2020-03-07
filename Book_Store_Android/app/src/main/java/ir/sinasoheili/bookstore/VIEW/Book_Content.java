@@ -25,10 +25,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private TextView tv_autor_name;
     private TextView tv_publisher;
     private TextView tv_translator;
-    private TextView tv_price;
     private TextView tv_summery_name;
     private TextView tv_group_name;
-    private TextView tv_available_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,15 +62,13 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         tv_autor_name = findViewById(R.id.tv_autor_name_book_content);
         tv_publisher = findViewById(R.id.tv_publisher_book_content);
         tv_translator = findViewById(R.id.tv_translator_name_book_content);
-        tv_price = findViewById(R.id.tv_price_book_content);
         tv_summery_name = findViewById(R.id.tv_summery_name_book_content);
         tv_group_name = findViewById(R.id.tv_group_name_book_content);
-        tv_available_count = findViewById(R.id.tv_available_count_book_content);
     }
 
     private void init_view_pager()
     {
-        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this , R.drawable.comment , R.drawable.like);
+        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this , R.drawable.book , R.drawable.book);
         viewpager.setAdapter(adapter);
     }
 
@@ -82,10 +78,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         tv_autor_name.setText("نویسنده "+book.getAutor_name());
         tv_publisher.setText("انتشارات "+book.getPublisher());
         tv_translator.setText("مترجم "+book.getTranslator());
-        tv_price.setText(book.getPrice()+" ریال");
-        tv_summery_name.setText(book.getSummery());
-        tv_group_name.setText("دسته "+book.getGroup_name());
-        tv_available_count.setText("تعداد موجود "+book.getAvailable_count()+" عدد");
+        tv_summery_name.setText("توضیحات : "+book.getSummery());
+        tv_group_name.setText("گروه "+book.getGroup_name());
     }
 
     @Override

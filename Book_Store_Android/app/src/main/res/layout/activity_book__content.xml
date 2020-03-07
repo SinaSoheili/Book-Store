@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VIEW.Book_Content">
+    tools:context=".VIEW.Book_Content"
+    android:background="@color/content_page_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             app:cardCornerRadius="15dp">
 
             <RelativeLayout
@@ -84,6 +85,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             app:cardCornerRadius="15dp">
 
             <LinearLayout
@@ -135,7 +137,7 @@
                     android:layout_marginTop="10dp">
 
                     <TextView
-                        android:id="@+id/tv_price_book_content"
+                        android:id="@+id/tv_group_name_book_content"
                         android:layout_height="wrap_content"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -163,34 +165,8 @@
                     android:textColor="@color/sub_title_text_color"
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="35dp"
-                    android:layout_marginLeft="35dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:id="@+id/tv_available_count_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                    <TextView
-                        android:id="@+id/tv_group_name_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                </LinearLayout>
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginBottom="25dp"/>
 
             </LinearLayout>
 

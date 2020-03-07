@@ -23,7 +23,7 @@ public class ListView_Adapter_SearchPage extends ArrayAdapter<Book>
 
     public ListView_Adapter_SearchPage(@NonNull Context context , @NonNull ArrayList<Book> objects)
     {
-        super(context, R.layout.recycler_view_item_search_page , objects);
+        super(context, R.layout.list_view_item_search_page, objects);
         this.context = context;
         this.book_item = objects;
     }
@@ -37,7 +37,7 @@ public class ListView_Adapter_SearchPage extends ArrayAdapter<Book>
         if(convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.recycler_view_item_search_page , null , false);
+            convertView = inflater.inflate(R.layout.list_view_item_search_page, null , false);
             holder = new List_view_holder_Search_page(convertView);
             convertView.setTag(holder);
         }
