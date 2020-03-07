@@ -3,6 +3,7 @@ package ir.sinasoheili.bookstore.VIEW;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -33,6 +34,9 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private boolean like_state = false;
     private boolean added_to_shop_list = false;
 
+    public static final String PREF_NAME = "pref_add_to_shop_list";
+    private SharedPreferences pref ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,6 +53,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         init_view_pager();
         fill_obj();
 
+        if(pref.contains(String.valueOf(book.getId())) == true)
+        {
+            added_to_shop_list = true;
+        }
         if(added_to_shop_list == true)
         {
             iv_bag.setImageResource(R.drawable.tick);
@@ -87,6 +95,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         tv_translator = findViewById(R.id.tv_translator_name_book_content);
         tv_summery_name = findViewById(R.id.tv_summery_name_book_content);
         tv_group_name = findViewById(R.id.tv_group_name_book_content);
+
+        pref = getSharedPreferences(PREF_NAME , MODE_PRIVATE);
     }
 
     private void init_view_pager()
@@ -130,11 +140,13 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         {
             if(added_to_shop_list == true)
             {
+                pref.edit().remove(String.valueOf(book.getId())).commit();
                 iv_bag.setImageResource(R.drawable.bag);
                 added_to_shop_list = false;
             }
             else
             {
+                pref.edit().putInt(String.valueOf(book.getId()) , book.getId()).commit();
                 iv_bag.setImageResource(R.drawable.tick);
                 added_to_shop_list = true;
             }
