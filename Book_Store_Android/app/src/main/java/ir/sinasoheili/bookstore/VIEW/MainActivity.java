@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private Home_Page_View home_page;
     private Search_Page_View search_page;
+    private Bag_Shop_Page_View bag_shop_page;
     private Profile_Page_View profile_page;
 
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         home_page = new Home_Page_View();
         search_page = new Search_Page_View();
+        bag_shop_page = new Bag_Shop_Page_View();
         profile_page = new Profile_Page_View();
     }
 
@@ -46,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         else if(menuItem.getItemId() == R.id.bottom_navigation_view_search_item)
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_card_view_continer , search_page).commit();
+        }
+        else if(menuItem.getItemId() == R.id.bottom_navigation_view_bag_shop_item)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_card_view_continer , bag_shop_page).commit();
         }
         else if(menuItem.getItemId() == R.id.bottom_navigation_view_profile_item)
         {
