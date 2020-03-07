@@ -28,6 +28,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:layout_below="@id/iv_item_recyclerview_homepage"
+            android:textColor="@color/title_text_color"
             android:text="name"
             />
 
@@ -39,6 +40,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:layout_below="@id/tv_book_title_item_recyclerview_homepage"
+            android:textColor="@color/sub_title_text_color"
             android:text="autor_name"
             />
 
