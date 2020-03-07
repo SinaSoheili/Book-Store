@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,6 +58,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         {
             added_to_shop_list = true;
         }
+
         if(added_to_shop_list == true)
         {
             iv_bag.setImageResource(R.drawable.tick);

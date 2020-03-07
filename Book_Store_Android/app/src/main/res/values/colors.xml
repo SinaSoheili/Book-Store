@@ -6,6 +6,7 @@
 
     <color name="home_page_background">#FFE9A2</color>
     <color name="search_page_background">#FFE9A2</color>
+    <color name="bag_shop_page_background">#FFE9A2</color>
     <color name="content_page_background">#FFE9A2</color>
     <color name="recycler_view_item_background">#FFE9A2</color>
 
