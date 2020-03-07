@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.R;
@@ -19,7 +21,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private ViewPager viewpager;
     private ImageView iv_comment;
-    private ImageView iv_like;
+    private LottieAnimationView lav_like;
     private ImageView iv_bag;
     private TextView tv_book_name;
     private TextView tv_autor_name;
@@ -27,6 +29,9 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private TextView tv_translator;
     private TextView tv_summery_name;
     private TextView tv_group_name;
+
+    private boolean like_state = false;
+    private boolean added_to_shop_list = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +48,24 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         init_obj();
         init_view_pager();
         fill_obj();
+
+        if(added_to_shop_list == true)
+        {
+            iv_bag.setImageResource(R.drawable.tick);
+        }
+        else
+        {
+            iv_bag.setImageResource(R.drawable.bag);
+        }
+
+        if(like_state == true)
+        {
+            lav_like.setProgress(100);
+        }
+        else
+        {
+            lav_like.setProgress(0);
+        }
     }
 
     private void init_obj()
@@ -52,8 +75,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         iv_comment = findViewById(R.id.iv_comment_book_content);
         iv_comment.setOnClickListener(this);
 
-        iv_like = findViewById(R.id.iv_like_book_content);
-        iv_like.setOnClickListener(this);
+        lav_like = findViewById(R.id.lav_like_book_content);
+        lav_like.setOnClickListener(this);
 
         iv_bag = findViewById(R.id.iv_bag_book_content);
         iv_bag.setOnClickListener(this);
@@ -89,13 +112,32 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         {
             Toast.makeText(this, "comment", Toast.LENGTH_SHORT).show();
         }
-        else if(v.equals(iv_like))
+        else if(v.equals(lav_like))
         {
-            Toast.makeText(this, "like", Toast.LENGTH_SHORT).show();
+            if(like_state == true)
+            {
+                lav_like.setProgress(0);
+                like_state = false;
+            }
+            else
+            {
+                lav_like.playAnimation();
+                like_state = true;
+            }
+
         }
         else if(v.equals(iv_bag))
         {
-            Toast.makeText(this, "bag", Toast.LENGTH_SHORT).show();
+            if(added_to_shop_list == true)
+            {
+                iv_bag.setImageResource(R.drawable.bag);
+                added_to_shop_list = false;
+            }
+            else
+            {
+                iv_bag.setImageResource(R.drawable.tick);
+                added_to_shop_list = true;
+            }
         }
     }
 }

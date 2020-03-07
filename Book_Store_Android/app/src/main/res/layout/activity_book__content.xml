@@ -46,28 +46,32 @@
 
                     <ImageView
                         android:id="@+id/iv_comment_book_content"
-                        android:layout_height="20dp"
-                        android:layout_width="20dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:src="@drawable/comment"
+                        android:scaleType="centerCrop"
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="40dp"/>
 
-                    <ImageView
-                        android:id="@+id/iv_like_book_content"
-                        android:layout_height="20dp"
-                        android:layout_width="20dp"
-                        android:src="@drawable/like"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lav_like_book_content"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        app:lottie_rawRes="@raw/like"
+                        app:lottie_autoPlay="false"
+                        android:scaleType="centerCrop"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"/>
 
                     <ImageView
                         android:id="@+id/iv_bag_book_content"
-                        android:layout_height="20dp"
-                        android:layout_width="20dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:src="@drawable/bag"
+                        android:scaleType="centerCrop"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
