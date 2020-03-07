@@ -14,7 +14,7 @@
     switch($type)
     {
         case "top_discount":
-            $cmd = "SELECT book.ID , book.NAME , book.PRICE , book.FRONT_PIC , book.DISCOUNT_CODE 
+            $cmd = "SELECT * 
                         FROM ".TBL_BOOK." 
                         INNER JOIN `discount` ON book.DISCOUNT_CODE = discount.DISCOUNT_ID
                         ORDER BY discount.PERSENT DESC
@@ -22,20 +22,20 @@
             break;
 
         case "newest":
-            $cmd = "SELECT book.ID , book.NAME , book.PRICE , book.FRONT_PIC , book.DISCOUNT_CODE
+            $cmd = "SELECT *
                         FROM ".TBL_BOOK." 
                         ORDER BY ID DESC LIMIT 20";
             break;
 
         case "favoriot":
-            $cmd = "SELECT book.ID , book.NAME , book.PRICE , book.FRONT_PIC , book.DISCOUNT_CODE
+            $cmd = "SELECT *
                         FROM ".TBL_BOOK."
                         ORDER BY LIKE_COUNT DESC
                         LIMIT 20";
             break;
 
         case "top_sell":
-            $cmd = "SELECT book.ID , book.NAME , book.PRICE , book.FRONT_PIC , book.DISCOUNT_CODE
+            $cmd = "SELECT *
                         FROM ".TBL_BOOK." 
                         INNER JOIN `user_buy` ON book.ID = user_buy.BOOK_ID
                         ORDER BY user_buy.COUNT DESC
