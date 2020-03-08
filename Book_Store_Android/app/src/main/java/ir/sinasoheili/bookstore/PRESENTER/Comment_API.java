@@ -12,4 +12,7 @@ public interface Comment_API
 
     @GET("get_book_comment.php")
     Call<ArrayList<Comment>> get_comment(@Query("book_id") int book_id);
+
+    @GET("insert_book_comment.php")
+    Call<String> insert_comment(@Query("user_id") int user_id , @Query("book_id") int book_id , @Query("date") String date , @Query("content") String content);
 }
