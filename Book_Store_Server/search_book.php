@@ -31,7 +31,7 @@
                 echo "request isn't valid";
                 exit();
             }
-            $cmd = "SELECT * FROM ".TBL_BOOK." WHERE NAME = \"".$_GET["name"]."\"";
+            $cmd = "SELECT * FROM ".TBL_BOOK." WHERE NAME LIKE \"%".$_GET["name"]."%\"";
 
             break;
 
