@@ -10,5 +10,6 @@
     define("TBL_DISCOUNT"   , "discount");
     define("TBL_USER"       , "user");
     define("TBL_USER_BUY"   , "user_buy");
+    define("TBL_LIKE_BOOK"   , "like_book");
 
 ?>
