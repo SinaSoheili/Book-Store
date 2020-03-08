@@ -6,7 +6,6 @@ import retrofit2.http.Query;
 
 public interface Like_API
 {
-//    user_like_book.php ? type=[delete_like , insert_like , check_like] & user_id =  & book_id =
     public static String base_url = "http://10.0.2.2/book_store_server/";
 
     @GET("user_like_book.php?type=delete_like")

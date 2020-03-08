@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp">
+
+    <TextView
+        android:id="@+id/tv_user_name_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/user_name_comment_text_color"
+        android:layout_marginTop="8dp"
+        android:text="name"/>
+
+    <TextView
+        android:id="@+id/tv_date_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:textColor="@color/date_comment_text_color"
+        android:layout_marginTop="8dp"
+        android:text="date"
+        />
+
+    <TextView
+        android:id="@+id/tv_content_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_below="@id/tv_user_name_comment"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/content_comment_text_color"
+        android:text="content"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9C9C9C"
+        android:layout_below="@id/tv_content_comment"
+        android:layout_marginTop="15dp"
+        />
+
+</RelativeLayout>

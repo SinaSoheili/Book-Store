@@ -27,4 +27,8 @@
     <color name="title_text_color">#161616</color>
     <color name="sub_title_text_color">#2B2B2B</color>
 
+    <color name="user_name_comment_text_color">#242424</color>
+    <color name="date_comment_text_color">#6F6F6F</color>
+    <color name="content_comment_text_color">#353535</color>
+
 </resources>

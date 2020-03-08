@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class User
 {
+    public static final String PREF_NAME = "user_id_pref";
+    public static final String PREF_KEY_USER_ID = "id";
+
     @SerializedName("ID")
     private int id;
 
