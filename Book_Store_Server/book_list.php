@@ -28,11 +28,17 @@
             break;
 
         case "favoriot":
-            $cmd = "SELECT BOOK_ID , COUNT(USER_ID) AS like_count 
-                        FROM like_book
-                        GROUP BY BOOK_ID
-                        ORDER BY like_count DESC
-                        LIMIT 20";
+            $cmd = "SELECT book.AUTOR_NAME    , book.AVAILABLE_COUNT , book.BACK_PIC   , 
+                           book.DISCOUNT_CODE , book.FRONT_PIC       , book.GROUP_NAME , 
+                           book.ID            , book.NAME            , book.PAGE_COUNT , 
+                           book.PRICE         , book.PRINT_YEAR      , book.PUBLISHER  ,
+                           book.SHABAK        , book.SUMMERY         , book.TRANSLATOR
+                    FROM book 
+                         INNER JOIN 
+                         (SELECT BOOK_ID , COUNT(USER_ID) AS like_count FROM like_book GROUP BY BOOK_ID ) AS result_table
+                         ON book.ID = result_table.BOOK_ID
+                         ORDER BY result_table.like_count DESC
+                         LIMIT 20";
             break;
 
         case "top_sell":
