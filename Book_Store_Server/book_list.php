@@ -28,9 +28,10 @@
             break;
 
         case "favoriot":
-            $cmd = "SELECT *
-                        FROM ".TBL_BOOK."
-                        ORDER BY LIKE_COUNT DESC
+            $cmd = "SELECT BOOK_ID , COUNT(USER_ID) AS like_count 
+                        FROM like_book
+                        GROUP BY BOOK_ID
+                        ORDER BY like_count DESC
                         LIMIT 20";
             break;
 
