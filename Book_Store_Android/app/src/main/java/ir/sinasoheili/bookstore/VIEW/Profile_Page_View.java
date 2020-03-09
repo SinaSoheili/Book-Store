@@ -76,9 +76,12 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
             {
                 pref.edit().remove(User.PREF_KEY_USER_ID).commit();
                 get_user();
+                Toast.makeText(context, "log out", Toast.LENGTH_SHORT).show();
             }
             else if(user == null) //log in or register_user
             {
+                pref.edit().putInt(User.PREF_KEY_USER_ID , 16).commit();
+                get_user();
                 Toast.makeText(context, "log in", Toast.LENGTH_SHORT).show();
             }
         }
@@ -86,7 +89,7 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
 
     private void get_user()
     {
-        int user_id = pref.getInt(User.PREF_NAME , -1);
+        int user_id = pref.getInt(User.PREF_KEY_USER_ID , -1);
         if(user_id == -1)
         {
             user = null;
