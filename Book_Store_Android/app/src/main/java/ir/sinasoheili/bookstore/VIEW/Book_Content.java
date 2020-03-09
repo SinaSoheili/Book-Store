@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -183,7 +184,9 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         {
             if(get_user_id() == -1)
             {
-                Toast.makeText(this, "برای لایک کردن کتاب باید در برنامه ثبت نام کنید", Toast.LENGTH_SHORT).show();
+                Toast t = Toast.makeText(this, "برای لایک کردن کتاب باید در برنامه ثبت نام کنید", Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER , 0 , 0 );
+                t.show();
                 return;
             }
 
@@ -232,7 +235,9 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             int user_id = get_user_id();
             if(user_id == -1)
             {
-                Toast.makeText(this , "شما در برنامه ثبت نام نکرده اید . لطفا ثبت نام کنید!!" , Toast.LENGTH_SHORT).show();
+                Toast t = Toast.makeText(this , "شما در برنامه ثبت نام نکرده اید . لطفا ثبت نام کنید!!" , Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER , 0 , 0);
+                t.show();
                 return;
             }
 
