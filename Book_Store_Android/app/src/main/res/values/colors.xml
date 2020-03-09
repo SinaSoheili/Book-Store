@@ -7,10 +7,12 @@
     <color name="home_page_background">#FFE9A2</color>
     <color name="search_page_background">#FFE9A2</color>
     <color name="bag_shop_page_background">#FFE9A2</color>
+    <color name="profile_page_background">#FFE9A2</color>
     <color name="content_page_background">#FFE9A2</color>
     <color name="recycler_view_item_background">#FFE9A2</color>
 
     <color name="bottom_navigation_view_background">#FFDC75</color>
+    <color name="profile_top_card_view_background">#FFDC75</color>
     <!--FFEF95-->
 
     <color name="homePage_cardview_background_banner1">#00BCD4</color>
