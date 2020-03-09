@@ -181,6 +181,12 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         }
         else if(v.equals(lav_like))
         {
+            if(get_user_id() == -1)
+            {
+                Toast.makeText(this, "برای لایک کردن کتاب باید در برنامه ثبت نام کنید", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if(like_state == true)
             {
                 remove_like();
@@ -223,13 +229,20 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
                 return;
             }
 
+            int user_id = get_user_id();
+            if(user_id == -1)
+            {
+                Toast.makeText(this , "شما در برنامه ثبت نام نکرده اید . لطفا ثبت نام کنید!!" , Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Retrofit retrofit = new Retrofit.Builder()
                                     .baseUrl(Comment_API.base_url)
                                     .addConverterFactory(GsonConverterFactory.create())
                                     .build();
 
             Comment_API api = retrofit.create(Comment_API.class);
-            Call<String> call = api.insert_comment(get_user_id() , book.getId() ,get_current_date() , msg);
+            Call<String> call = api.insert_comment(user_id , book.getId() ,get_current_date() , msg);
             call.enqueue(new Callback<String>()
             {
                 @Override
@@ -243,7 +256,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
                     }
                     else
                     {
-                        Toast.makeText(Book_Content.this, "can't send comment", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Book_Content.this, "امکان ارسال کامنت وجود ندارد لطفا بعدا امتحان کنید !!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -260,7 +273,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private int get_user_id()
     {
         SharedPreferences pref = this.getSharedPreferences(User.PREF_NAME , MODE_PRIVATE);
-        int id = pref.getInt(User.PREF_KEY_USER_ID , 16); //TODO:CHANGE 16 TO 0
+        int id = pref.getInt(User.PREF_KEY_USER_ID , -1);
         return id;
     }
 
@@ -277,13 +290,18 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void set_like_state()
     {
+        int user_id = get_user_id();
+        if(user_id == -1)
+        {
+            return;
+        }
         Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(Like_API.base_url)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
+                .baseUrl(Like_API.base_url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         Like_API api = retrofit.create(Like_API.class);
-        Call<String> call = api.check_like(get_user_id() , book.getId());
+        Call<String> call = api.check_like(user_id , book.getId());
         call.enqueue(new Callback<String>()
         {
             @Override
@@ -312,13 +330,18 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void remove_like()
     {
+        int user_id = get_user_id();
+        if(user_id == -1)
+        {
+            return;
+        }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Like_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Like_API api = retrofit.create(Like_API.class);
-        Call<String> call = api.delete_like(get_user_id() , book.getId());
+        Call<String> call = api.delete_like(user_id , book.getId());
         call.enqueue(new Callback<String>()
         {
             @Override
@@ -338,13 +361,19 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void add_like()
     {
+        int user_id = get_user_id();
+        if(user_id == -1)
+        {
+            return;
+        }
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Like_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Like_API api = retrofit.create(Like_API.class);
-        Call<String> call = api.insert_like(get_user_id() , book.getId());
+        Call<String> call = api.insert_like(user_id , book.getId());
         call.enqueue(new Callback<String>()
         {
             @Override
