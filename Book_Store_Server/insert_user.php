@@ -48,13 +48,19 @@
 
 
     $query_result = $database->query($cmd);
-    if($query_result === true)
+    if($query_result === true) // retur id of user
     {
-        print_r("true");
+        $cmd = "SELECT user.ID
+                    FROM `user`
+                    WHERE EMAIL = \"".$email."\" AND PHONE = \"".$phone."\"";
+        $result = $database->query($cmd);
+        $a_result = $result->fetch_assoc();
+        $fetched_id = $a_result["ID"];
+        print_r($fetched_id);
     }
     else
     {
-        print_r("false");
+        print_r(-1);
     }
 
     $database->close();
