@@ -1,8 +1,10 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +70,17 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
     {
         if(v.equals(tv_book_list_bought))
         {
-            Toast.makeText(context, "list", Toast.LENGTH_SHORT).show();
+            if(user == null)
+            {
+                Toast t = Toast.makeText(context , "برای مشاهده لیست کتاب های خریده شده لطفا در برنامه ثبت نام کنید !" , Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER , 0 , 0);
+                t.show();
+                return;
+            }
+
+            Intent intent = new Intent(context  , Book_Bought_List_Activity.class);
+            intent.putExtra("user_id" , user.getId());
+            startActivity(intent);
         }
         else if(v.equals(tv_log_in_out_user))
         {
