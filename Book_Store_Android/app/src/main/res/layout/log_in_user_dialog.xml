@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/login_register_dialog_background">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email_login_dialog"
@@ -48,6 +49,7 @@
         android:layout_marginTop="20dp"
         android:text="ورود"
         android:background="@null"
+        android:textColor="@color/submit_button_dialog_text_color"
         />
 
 </LinearLayout>

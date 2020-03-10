@@ -10,6 +10,7 @@
     <color name="profile_page_background">#FFE9A2</color>
     <color name="book_bought_page_background">#FFE9A2</color>
     <color name="content_page_background">#FFE9A2</color>
+    <color name="login_register_dialog_background">#FFE9A2</color>
     <color name="recycler_view_item_background">#FFE9A2</color>
 
     <color name="bottom_navigation_view_background">#FFDC75</color>
@@ -33,5 +34,7 @@
     <color name="user_name_comment_text_color">#242424</color>
     <color name="date_comment_text_color">#6F6F6F</color>
     <color name="content_comment_text_color">#353535</color>
+
+    <color name="submit_button_dialog_text_color">#FF352A</color>
 
 </resources>
