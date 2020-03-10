@@ -14,7 +14,11 @@
     switch($type)
     {
         case "top_discount":
-            $cmd = "SELECT * 
+            $cmd = "SELECT book.AUTOR_NAME    , book.AVAILABLE_COUNT , book.BACK_PIC   , 
+                           book.DISCOUNT_CODE , book.FRONT_PIC       , book.GROUP_NAME , 
+                           book.ID            , book.NAME            , book.PAGE_COUNT , 
+                           book.PRICE         , book.PRINT_YEAR      , book.PUBLISHER  ,
+                           book.SHABAK        , book.SUMMERY         , book.TRANSLATOR 
                         FROM ".TBL_BOOK." 
                         INNER JOIN `discount` ON book.DISCOUNT_CODE = discount.DISCOUNT_ID
                         ORDER BY discount.PERSENT DESC
@@ -42,7 +46,11 @@
             break;
 
         case "top_sell":
-            $cmd = "SELECT *
+            $cmd = "SELECT book.AUTOR_NAME    , book.AVAILABLE_COUNT , book.BACK_PIC   , 
+                           book.DISCOUNT_CODE , book.FRONT_PIC       , book.GROUP_NAME , 
+                           book.ID            , book.NAME            , book.PAGE_COUNT , 
+                           book.PRICE         , book.PRINT_YEAR      , book.PUBLISHER  ,
+                           book.SHABAK        , book.SUMMERY         , book.TRANSLATOR
                         FROM ".TBL_BOOK." 
                         INNER JOIN `user_buy` ON book.ID = user_buy.BOOK_ID
                         ORDER BY user_buy.COUNT DESC
