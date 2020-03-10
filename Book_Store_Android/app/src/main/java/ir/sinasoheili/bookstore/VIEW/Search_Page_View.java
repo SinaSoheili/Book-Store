@@ -93,6 +93,10 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
     @Override
     public boolean onQueryTextChange(String newText)
     {
+        if(newText.isEmpty())
+        {
+            show_search_result(new ArrayList<Book>());
+        }
         return false;
     }
 
