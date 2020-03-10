@@ -19,7 +19,15 @@
         exit();
     }
 
-    $cmd = "SELECT * FROM ".TBL_USER_BUY." WHERE USER_ID = ".$user_id;
+    $cmd = "SELECT book.AUTOR_NAME     , book.AVAILABLE_COUNT , book.BACK_PIC   , 
+                   book.DISCOUNT_CODE  , book.FRONT_PIC       , book.GROUP_NAME , 
+                   book.ID             , book.NAME            , book.PAGE_COUNT , 
+                   book.PRICE          , book.PRINT_YEAR      , book.PUBLISHER  , 
+                   book.SHABAK         , book.SUMMERY         , book.TRANSLATOR 
+            FROM book
+            INNER JOIN user_buy 
+            ON user_buy.BOOK_ID = book.ID
+            WHERE user_buy.USER_ID = ".$user_id;
     $query_result = $db_user_buy->query($cmd);
     $s_result = $query_result->fetch_all(MYSQLI_ASSOC);
     print_r(json_encode($s_result));
