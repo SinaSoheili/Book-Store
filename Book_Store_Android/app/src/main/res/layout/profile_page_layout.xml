@@ -87,7 +87,19 @@
         android:gravity="right"
         android:textColor="@color/sub_title_text_color"
         android:textSize="@dimen/text_size_sub_title"
-        android:text="خروج از حساب کاربری"
+        android:text="ورود به حساب کاربری"
+        />
+
+    <TextView
+        android:id="@+id/tv_register_user_profile_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:gravity="right"
+        android:textColor="@color/sub_title_text_color"
+        android:textSize="@dimen/text_size_sub_title"
+        android:text="ثبت کاربر"
         />
 
 </LinearLayout>

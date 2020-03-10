@@ -1,20 +1,28 @@
 package ir.sinasoheili.bookstore.VIEW;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.tabs.TabLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Pattern;
+
 import ir.sinasoheili.bookstore.MODEL.User;
 import ir.sinasoheili.bookstore.PRESENTER.User_Api;
 import ir.sinasoheili.bookstore.R;
@@ -35,6 +43,7 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
     private TextView tv_phone;
     private TextView tv_book_list_bought;
     private TextView tv_log_in_out_user;
+    private TextView tv_register_user;
 
     private SharedPreferences pref;
     private User user;
@@ -61,6 +70,9 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
 
         tv_log_in_out_user  = root_view.findViewById(R.id.tv_log_in_out_user_profile_page);
         tv_log_in_out_user.setOnClickListener(this);
+
+        tv_register_user = root_view.findViewById(R.id.tv_register_user_profile_page);
+        tv_register_user.setOnClickListener(this);
 
         pref = context.getSharedPreferences(User.PREF_NAME , Context.MODE_PRIVATE);
     }
@@ -90,12 +102,14 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
                 get_user();
                 Toast.makeText(context, "log out", Toast.LENGTH_SHORT).show();
             }
-            else if(user == null) //log in or register_user
+            else if(user == null) //log in user
             {
-                pref.edit().putInt(User.PREF_KEY_USER_ID , 16).commit();
-                get_user();
-                Toast.makeText(context, "log in", Toast.LENGTH_SHORT).show();
+                show_login_dialog();
             }
+        }
+        else if(v.equals(tv_register_user))
+        {
+            Toast.makeText(context , "register_user" , Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -142,7 +156,7 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
             tv_user_name.setText("نام کاربر");
             tv_email.setText("ایمیل ");
             tv_phone.setText("شماره همراه ");
-            tv_log_in_out_user.setText("ورود / ثبت حساب کاربری");
+            tv_log_in_out_user.setText("ورود به حساب کاربری");
         }
         else
         {
@@ -151,5 +165,101 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
             tv_phone.setText("شماره همراه : "+user.getPhone());
             tv_log_in_out_user.setText("خروج از حساب کاربری");
         }
+    }
+
+    private void show_login_dialog()
+    {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.log_in_user_dialog , null , false);
+        final EditText et_email = view.findViewById(R.id.et_email_user_login_dialog);
+        final EditText et_phone = view.findViewById(R.id.et_phone_user_login_dialog);
+        Button  btn_submit = view.findViewById(R.id.btn_login_dialog);
+        final TextInputLayout til_phone = view.findViewById(R.id.til_phone_login_dialog);
+        final TextInputLayout til_email = view.findViewById(R.id.til_email_login_dialog);
+
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(view);
+        dialog.show();
+        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT , RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        btn_submit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String email = et_email.getText().toString().trim();
+                String phone = et_phone.getText().toString().trim();
+
+                if(! is_email_valid(email))
+                {
+                    til_email.setError("ایمیل وارد شده صحیح نیست !!");
+                    et_email.requestFocus();
+                    return;
+                }
+                else
+                {
+                    til_email.setErrorEnabled(false);
+                }
+
+                if(! is_phone_valid(phone))
+                {
+                    til_phone.setError("شماره وارد شده معتبر نیست !!");
+                    et_phone.requestFocus();
+                    return;
+                }
+                else
+                {
+                    til_phone.setErrorEnabled(false);
+                }
+
+                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(User_Api.base_url)
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+
+                User_Api api = retrofit.create(User_Api.class);
+                Call<User> call = api.is_user_valid(email , phone);
+                call.enqueue(new Callback<User>()
+                {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response)
+                    {
+                        user = response.body();
+                        if(user != null)
+                        {
+                            pref.edit().putInt(User.PREF_KEY_USER_ID , user.getId()).commit();
+                            get_user();
+                        }
+                        else
+                        {
+                            Toast t = Toast.makeText(context, "کاربر در سیستم موجود نیست لطفا ثبت نام کنید !", Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER , 0 , 0);
+                            t.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t)
+                    {
+                        //todo : what to do if can't connect to server
+                        Toast.makeText(context , "can't connect to server" , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private boolean is_email_valid(String email)
+    {
+        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        return pattern.matcher(email).matches();
+    }
+
+    private boolean is_phone_valid(String phone)
+    {
+        Pattern pattern = Pattern.compile("09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}");
+        return pattern.matcher(phone).matches();
     }
 }
