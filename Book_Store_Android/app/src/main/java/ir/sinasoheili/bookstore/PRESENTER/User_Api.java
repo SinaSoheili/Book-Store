@@ -25,5 +25,5 @@ public interface User_Api
     Call<String> register_user(@Query("name") String name , @Query("email") String email , @Query("phone") String phone , @Query("family_name") String family_name , @Query("avatar") String avatar);
 
     @GET("is_user_valid.php")
-    Call<String> is_user_valid(@Query("email") String email , @Query("phone") String phone);
+    Call<User> is_user_valid(@Query("email") String email , @Query("phone") String phone);
 }

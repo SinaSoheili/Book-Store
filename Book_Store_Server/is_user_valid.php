@@ -20,13 +20,6 @@
     $cmd = "SELECT * FROM `".TBL_USER."` WHERE PHONE = \"".$phone."\" AND EMAIL = \"".$email."\"";
     $result = $db->query($cmd);
     $s_result = $result->fetch_assoc();
-    if(isset($s_result))
-    {
-        echo "true";
-    }
-    else
-    {
-        echo "false";
-    }
+    print_r(json_encode($s_result));
     $db->close();
 ?>
