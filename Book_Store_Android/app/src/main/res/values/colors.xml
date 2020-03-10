@@ -17,8 +17,10 @@
     <color name="profile_top_card_view_background">#FFDC75</color>
     <!--FFEF95-->
 
-    <color name="homePage_cardview_background_banner1">#00BCD4</color>
-    <color name="homePage_cardview_background_banner2">#FFC107</color>
+    <color name="homePage_cardview_background_banner1">#72C3CE</color>
+    <!--00BCD4-->
+    <color name="homePage_cardview_background_banner2">#9A87BD</color>
+    <!--FFC107-->
 
     <color name="homepage_title1_textcolor">#FF5722</color>
     <color name="homepage_title2_textcolor">#A31791</color>
