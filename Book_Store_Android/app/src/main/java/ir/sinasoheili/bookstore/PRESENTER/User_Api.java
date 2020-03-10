@@ -19,10 +19,10 @@ public interface User_Api
     Call<ArrayList<Book>> get_book_of_user_bought(@Query("user_id") int user_id);
 
     @GET("insert_user.php")
-    Call<String> register_user(@Query("name") String name , @Query("email") String email , @Query("phone") String phone);
+    Call<Integer> register_user(@Query("name") String name , @Query("email") String email , @Query("phone") String phone);
 
     @GET("insert_user.php")
-    Call<String> register_user(@Query("name") String name , @Query("email") String email , @Query("phone") String phone , @Query("family_name") String family_name , @Query("avatar") String avatar);
+    Call<Integer> register_user(@Query("name") String name , @Query("email") String email , @Query("phone") String phone , @Query("family_name") String family_name , @Query("avatar") String avatar);
 
     @GET("is_user_valid.php")
     Call<User> is_user_valid(@Query("email") String email , @Query("phone") String phone);

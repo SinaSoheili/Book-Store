@@ -109,11 +109,11 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
         }
         else if(v.equals(tv_register_user))
         {
-            Toast.makeText(context , "register_user" , Toast.LENGTH_SHORT).show();
+            show_register_dialog();
         }
     }
 
-    private void get_user()
+    private void get_user() // read id of user from pref AND request to server to fetch data of user
     {
         int user_id = pref.getInt(User.PREF_KEY_USER_ID , -1);
         if(user_id == -1)
@@ -240,6 +240,107 @@ public class Profile_Page_View extends Fragment implements View.OnClickListener
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t)
+                    {
+                        //todo : what to do if can't connect to server
+                        Toast.makeText(context , "can't connect to server" , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void show_register_dialog()
+    {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.register_user_dialog , null , false);
+        final EditText et_name = view.findViewById(R.id.et_name_register_dialog);
+        final EditText et_email = view.findViewById(R.id.et_email_user_register_dialog);
+        final EditText et_phone = view.findViewById(R.id.et_phone_user_register_dialog);
+        Button  btn_submit = view.findViewById(R.id.btn_register_dialog);
+        final TextInputLayout til_name  = view.findViewById(R.id.til_name_register_dialog);
+        final TextInputLayout til_phone = view.findViewById(R.id.til_phone_register_dialog);
+        final TextInputLayout til_email = view.findViewById(R.id.til_email_register_dialog);
+
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(view);
+        dialog.show();
+        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT , RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        btn_submit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String name  = et_name .getText().toString().trim();
+                String email = et_email.getText().toString().trim();
+                String phone = et_phone.getText().toString().trim();
+
+                if(name.isEmpty())
+                {
+                    til_name.setError("لطفا نام خود را وارد کنید !!");
+                    et_name.requestFocus();
+                    return;
+                }
+                else
+                {
+                    til_name.setErrorEnabled(false);
+                }
+
+                if(! is_email_valid(email))
+                {
+                    til_email.setError("ایمیل وارد شده صحیح نیست !!");
+                    et_email.requestFocus();
+                    return;
+                }
+                else
+                {
+                    til_email.setErrorEnabled(false);
+                }
+
+                if(! is_phone_valid(phone))
+                {
+                    til_phone.setError("شماره وارد شده معتبر نیست !!");
+                    et_phone.requestFocus();
+                    return;
+                }
+                else
+                {
+                    til_phone.setErrorEnabled(false);
+                }
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(User_Api.base_url)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                User_Api api = retrofit.create(User_Api.class);
+                Call<Integer> call = api.register_user(name , email , phone);
+                call.enqueue(new Callback<Integer>()
+                {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response)
+                    {
+                        int user_id = response.body();
+                        if(user_id != -1)
+                        {
+                            pref.edit().putInt(User.PREF_KEY_USER_ID , user_id).commit();
+                            get_user();
+                            Toast t = Toast.makeText(context , "با موفقیت ثبت شد ." , Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER , 0 , 0);
+                            t.show();
+                        }
+                        else
+                        {
+                            Toast t = Toast.makeText(context , "کاربر تکراری است .\n لطفا وارد شوید !!" , Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER , 0 , 0 );
+                            t.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t)
                     {
                         //todo : what to do if can't connect to server
                         Toast.makeText(context , "can't connect to server" , Toast.LENGTH_SHORT).show();
