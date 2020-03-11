@@ -48,19 +48,18 @@
 
 
     $query_result = $database->query($cmd);
-    if($query_result === true) // retur id of user
+    if($query_result === true) // mean insert is success and retrun user
     {
-        $cmd = "SELECT user.ID
+        $cmd = "SELECT *
                     FROM `user`
                     WHERE EMAIL = \"".$email."\" AND PHONE = \"".$phone."\"";
         $result = $database->query($cmd);
-        $a_result = $result->fetch_assoc();
-        $fetched_id = $a_result["ID"];
-        print_r($fetched_id);
+        $s_result = $result->fetch_assoc();
+        print_r(json_encode($s_result));
     }
-    else
+    else // mean insert is failed and retrun null
     {
-        print_r(-1);
+        print_r(json_encode(null));
     }
 
     $database->close();
