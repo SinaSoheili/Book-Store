@@ -41,6 +41,7 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
     private RadioGroup radiogroup;
     private ListView listview;
     private TextView tv_filter_title;
+    private TextView tv_list_empty;
 
     @Nullable
     @Override
@@ -67,6 +68,8 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
 
         searchview  = root_view.findViewById(R.id.searchview_Search_page);
         searchview.setOnQueryTextListener(this);
+
+        tv_list_empty = root_view.findViewById(R.id.tv_list_empty_Search_page);
     }
 
     @Override
@@ -103,6 +106,19 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
     @Override
     public void show_search_result(final ArrayList<Book> items)
     {
+        if(items.isEmpty())//list is empty and show tv empty
+        {
+            tv_list_empty.setVisibility(View.VISIBLE);
+            tv_list_empty.setAlpha(0);
+            tv_list_empty.animate().alpha(1).setDuration(800).start();
+        }
+        else
+        {
+            tv_list_empty.setVisibility(View.GONE);
+            tv_list_empty.setAlpha(0);
+            tv_list_empty.animate().alpha(1).setDuration(800).start();
+        }
+
         ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(context , items);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener()

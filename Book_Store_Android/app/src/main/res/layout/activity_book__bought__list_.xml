@@ -8,6 +8,17 @@
     tools:context=".VIEW.Book_Bought_List_Activity"
     android:background="@color/book_bought_page_background">
 
+    <TextView
+        android:id="@+id/tv_empty_list_book_bought_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="گزینه ای وجود ندارد !"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/sub_title_text_color"
+        android:textSize="@dimen/text_size_sub_title"
+        />
+
     <ListView
         android:id="@+id/lv_book_bought_page"
         android:layout_width="match_parent"

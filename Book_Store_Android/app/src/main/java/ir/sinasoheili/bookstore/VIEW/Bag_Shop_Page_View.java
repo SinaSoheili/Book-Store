@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
     private Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_presenter presenter;
     private ArrayList<Book> book_list;
     private ListView_Adapter_SearchPage adapter;
+    private TextView tv_empty_list;
 
     private ArrayList<String> keys;
     private SharedPreferences pref;
@@ -58,6 +60,8 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
         list_view_Bag_Shop_page = root_view.findViewById(R.id.list_view_Bag_Shop_page);
         list_view_Bag_Shop_page.setOnItemClickListener(this);
 
+        tv_empty_list = root_view.findViewById(R.id.tv_empty_list_Bag_Shop_page);
+
         book_list = new ArrayList<>();
 
         presenter = new Bag_Shop_Page_Presenter(getContext() , this);
@@ -66,6 +70,15 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
     @Override
     public void show_list()
     {
+        if(book_list.isEmpty())
+        {
+            tv_empty_list.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tv_empty_list.setVisibility(View.GONE);
+        }
+
         adapter = new ListView_Adapter_SearchPage(getContext() , book_list);
         list_view_Bag_Shop_page.setAdapter(adapter);
     }
@@ -74,6 +87,16 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
     public void update_list(Book book)
     {
         book_list.add(book);
+
+        if(book_list.isEmpty())
+        {
+            tv_empty_list.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tv_empty_list.setVisibility(View.GONE);
+        }
+
         adapter.notifyDataSetChanged();
     }
 

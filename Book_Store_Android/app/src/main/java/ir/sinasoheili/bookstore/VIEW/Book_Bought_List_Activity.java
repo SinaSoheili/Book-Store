@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class Book_Bought_List_Activity extends AppCompatActivity
     private ArrayList<Book> book_list;
     private int user_id;
     private ListView lv;
+    private TextView tv_empty_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +48,8 @@ public class Book_Bought_List_Activity extends AppCompatActivity
     {
         lv = findViewById(R.id.lv_book_bought_page);
         book_list = new ArrayList<>();
+
+        tv_empty_list = findViewById(R.id.tv_empty_list_book_bought_page);
     }
 
     private void init_book_list()
@@ -84,6 +89,14 @@ public class Book_Bought_List_Activity extends AppCompatActivity
 
     private void init_list_view()
     {
+        if(book_list.isEmpty() == true)
+        {
+            tv_empty_list.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            tv_empty_list.setVisibility(View.GONE);
+        }
         ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(this , book_list);
         lv.setAdapter(adapter);
     }
