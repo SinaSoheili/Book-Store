@@ -214,32 +214,32 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             if(added_to_shop_list == true) //remove from shop list
             {
                 pref.edit().remove(String.valueOf(book.getId())).commit();
-                iv_bag.animate().alpha(0).setStartDelay(60).setDuration(400).start();
+                iv_bag.animate().alpha(0).setStartDelay(60).setDuration(300).start();
                 new Handler().postDelayed(new Runnable()
                 {
                     @Override
                     public void run()
                     {
                         iv_bag.setImageResource(R.drawable.bag);
-                        iv_bag.animate().alpha(1).setStartDelay(0).setDuration(800).start();
+                        iv_bag.animate().alpha(1).setStartDelay(0).setDuration(500).start();
                     }
-                } , 500);
+                } , 300);
 
                 added_to_shop_list = false;
             }
             else //add to shop list
             {
                 pref.edit().putInt(String.valueOf(book.getId()) , book.getId()).commit();
-                iv_bag.animate().alpha(0).setStartDelay(60).setDuration(400).start();
+                iv_bag.animate().alpha(0).setStartDelay(60).setDuration(300).start();
                 new Handler().postDelayed(new Runnable()
                 {
                     @Override
                     public void run()
                     {
                         iv_bag.setImageResource(R.drawable.tick);
-                        iv_bag.animate().alpha(1).setStartDelay(0).setDuration(800).start();
+                        iv_bag.animate().alpha(1).setStartDelay(0).setDuration(500).start();
                     }
-                } , 500);
+                } , 300);
 
                 added_to_shop_list = true;
             }
