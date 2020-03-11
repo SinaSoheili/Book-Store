@@ -62,9 +62,9 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
 
         tv_empty_list = root_view.findViewById(R.id.tv_empty_list_Bag_Shop_page);
 
-        book_list = new ArrayList<>();
-
         presenter = new Bag_Shop_Page_Presenter(getContext() , this);
+
+        book_list = new ArrayList<>();
     }
 
     @Override

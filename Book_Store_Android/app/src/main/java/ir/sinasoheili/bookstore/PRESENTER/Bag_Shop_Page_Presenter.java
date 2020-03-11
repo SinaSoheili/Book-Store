@@ -2,7 +2,6 @@ package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,12 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Bag_Shop_Page_Presenter implements Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_presenter
 {
     private Context context;
-    private Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_view view;
+    private Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_view bag_shop_page_view;
 
-    public Bag_Shop_Page_Presenter(Context context , Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_view view)
+    public Bag_Shop_Page_Presenter(Context context , Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_view bag_shop_page_view)
     {
         this.context = context;
-        this.view = view;
+        this.bag_shop_page_view = bag_shop_page_view;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class Bag_Shop_Page_Presenter implements Bag_Shop_Page_Contract.Bag_Shop_
         SharedPreferences pref = context.getSharedPreferences(Book_Content.PREF_NAME , Context.MODE_PRIVATE);
         Map<String , Integer> map = (Map<String, Integer>) pref.getAll();
         ArrayList<String> keys = new ArrayList<>(map.keySet());
-        view.show_list();
+        bag_shop_page_view.show_list();
         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(Search_Book_API.base_url)
                                 .addConverterFactory(GsonConverterFactory.create())
@@ -49,7 +48,7 @@ public class Bag_Shop_Page_Presenter implements Bag_Shop_Page_Contract.Bag_Shop_
                 public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
                 {
                     Book cb = response.body().get(0);
-                    view.update_list(cb);
+                    bag_shop_page_view.update_list(cb);
                 }
 
                 @Override

@@ -1,6 +1,5 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
-import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
 
 public interface Bag_Shop_Page_Contract
