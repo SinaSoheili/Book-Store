@@ -115,8 +115,6 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
         else
         {
             tv_list_empty.setVisibility(View.GONE);
-            tv_list_empty.setAlpha(0);
-            tv_list_empty.animate().alpha(1).setDuration(800).start();
         }
 
         ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(context , items);

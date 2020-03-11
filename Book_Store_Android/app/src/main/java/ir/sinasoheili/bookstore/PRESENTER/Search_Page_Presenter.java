@@ -12,12 +12,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_presenter
 {
-    private Search_Page_Contract.Search_Page_view view;
+    private Search_Page_Contract.Search_Page_view search_page_view;
     private Context context;
 
-    public Search_Page_Presenter(Context context , Search_Page_Contract.Search_Page_view view)
+    public Search_Page_Presenter(Context context , Search_Page_Contract.Search_Page_view search_page_view)
     {
-        this.view = view;
+        this.context = context;
+        this.search_page_view = search_page_view;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                view.show_search_result(items);
+                search_page_view.show_search_result(items);
             }
 
             @Override
@@ -63,7 +64,7 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                view.show_search_result(items);
+                search_page_view.show_search_result(items);
             }
 
             @Override
@@ -90,7 +91,7 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                view.show_search_result(items);
+                search_page_view.show_search_result(items);
             }
 
             @Override
