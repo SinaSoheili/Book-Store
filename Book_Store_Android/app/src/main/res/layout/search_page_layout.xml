@@ -94,21 +94,29 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_view_Search_page"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_list_empty_Search_page"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="موردی یافت نشد !"
-        android:textColor="@color/sub_title_text_color"
-        android:textSize="@dimen/text_size_sub_title"
-        android:gravity="center"
-        />
+        <ListView
+            android:id="@+id/list_view_Search_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_list_empty_Search_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="موردی یافت نشد !"
+            android:textColor="@color/sub_title_text_color"
+            android:textSize="@dimen/text_size_sub_title"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>
