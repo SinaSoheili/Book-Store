@@ -1,7 +1,11 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
 import retrofit2.Call;
@@ -14,6 +18,7 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
 {
     private Search_Page_Contract.Search_Page_view search_page_view;
     private Context context;
+    private boolean dialog_is_show = false;
 
     public Search_Page_Presenter(Context context , Search_Page_Contract.Search_Page_view search_page_view)
     {
@@ -43,7 +48,10 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                Toast.makeText(context , "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -70,7 +78,10 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                Toast.makeText(context , "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -97,8 +108,29 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                Toast.makeText(context , "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }

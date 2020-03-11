@@ -1,7 +1,11 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.VIEW.Book_Bought_List_Activity;
@@ -15,6 +19,7 @@ public class Book_Bought_Presenter implements Book_Bought_Contract.Book_Bought_C
 {
     private Book_Bought_Contract.Book_Bought_Contract_view book_bought_view;
     private Context context;
+    private boolean dialog_is_show = false;
 
     public Book_Bought_Presenter(Context context , Book_Bought_Contract.Book_Bought_Contract_view book_bought_view)
     {
@@ -43,9 +48,29 @@ public class Book_Bought_Presenter implements Book_Bought_Contract.Book_Bought_C
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                //todo : what to do if cannot connect to server
-                Toast.makeText(context , "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }

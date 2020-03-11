@@ -1,6 +1,7 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class RecyclerView_Adapter_ContentPage extends RecyclerView.Adapter<Recyc
 {
     private Context context;
     private ArrayList<Comment> comments;
+    private boolean dialog_is_show = false;
 
     public RecyclerView_Adapter_ContentPage(Context context , ArrayList<Comment> comments)
     {
@@ -91,13 +94,33 @@ public class RecyclerView_Adapter_ContentPage extends RecyclerView.Adapter<Recyc
                 @Override
                 public void onFailure(Call<User> call, Throwable t)
                 {
-                    //TODO:if can't connect to server what to do
-                    Toast.makeText(context , "can not connect to server", Toast.LENGTH_SHORT).show();
+                    if(dialog_is_show == false)
+                    {
+                        show_error_dialog();
+                    }
                 }
             });
 
             tv_date.setText(comment.getDate());
             tv_content.setText(comment.getContent());
         }
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }

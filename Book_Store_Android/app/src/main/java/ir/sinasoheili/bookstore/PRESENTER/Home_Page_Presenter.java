@@ -1,12 +1,14 @@
 package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +29,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
 {
     private Context context;
     private Home_Page_Contract.Home_Page_View home_page_view;
+    private boolean dialog_is_show = false;
 
 
     //constructor
@@ -59,8 +62,10 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                //TODO:when can't get info from server what to do?
-                Toast.makeText(context, "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -87,8 +92,10 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                //TODO:when can't get info from server what to do?
-                Toast.makeText(context, "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -115,8 +122,10 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                //TODO:when can't get info from server what to do?
-                Toast.makeText(context, "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -143,9 +152,29 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t)
             {
-                //TODO:when can't get info from server what to do?
-                Toast.makeText(context, "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }

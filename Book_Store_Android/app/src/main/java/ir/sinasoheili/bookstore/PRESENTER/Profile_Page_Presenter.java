@@ -2,6 +2,7 @@ package ir.sinasoheili.bookstore.PRESENTER;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -29,6 +32,8 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
     private Context context;
 
     private SharedPreferences pref;
+
+    private boolean dialog_is_show = false;
 
     public Profile_Page_Presenter(Context context , Profile_Page_Contract.Profile_Page_Contract_view profile_page_view)
     {
@@ -72,8 +77,10 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
                 @Override
                 public void onFailure(Call<User> call, Throwable t)
                 {
-                    //todo:what to do if can't connect to server
-                    Toast.makeText(context, "can't connect to server", Toast.LENGTH_SHORT).show();
+                    if(dialog_is_show == false)
+                    {
+                        show_error_dialog();
+                    }
                 }
             });
         }
@@ -182,8 +189,10 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
             @Override
             public void onFailure(Call<User> call, Throwable t)
             {
-                //todo : what to do if can't connect to server
-                Toast.makeText(context , "can't connect to server" , Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -289,8 +298,10 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
             @Override
             public void onFailure(Call<User> call, Throwable t)
             {
-                //todo : what to do if can't connect to server
-                Toast.makeText(context , "can't connect to server" , Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -305,5 +316,23 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
     {
         Pattern pattern = Pattern.compile("09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}");
         return pattern.matcher(phone).matches();
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }

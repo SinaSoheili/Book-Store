@@ -1,9 +1,12 @@
 package ir.sinasoheili.bookstore.VIEW;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +60,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     public static final String PREF_NAME = "pref_add_to_shop_list";
     private SharedPreferences pref ;
+
+    private boolean dialog_is_show = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -156,8 +161,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<ArrayList<Comment>> call, Throwable t)
             {
-                //TODO:what do if can not get list of comment
-                Toast.makeText(Book_Content.this, "can not connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -288,8 +295,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onFailure(Call<String> call, Throwable t)
                 {
-                    //TODO:what do if can't connect to server
-                    Toast.makeText(Book_Content.this, "can't connect to server", Toast.LENGTH_SHORT).show();
+                    if(dialog_is_show == false)
+                    {
+                        show_error_dialog();
+                    }
                 }
             });
         }
@@ -346,8 +355,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<String> call, Throwable t)
             {
-                //todo : what to if can't connect to server
-                Toast.makeText(Book_Content.this, "can't connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
                 like_state = false;
             }
         });
@@ -378,8 +389,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<String> call, Throwable t)
             {
-                //todo : what to if can't connect to server
-                Toast.makeText(Book_Content.this, "can't connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
     }
@@ -410,9 +423,29 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<String> call, Throwable t)
             {
-                //todo : what to if can't connect to server
-                Toast.makeText(Book_Content.this, "can't connect to server", Toast.LENGTH_SHORT).show();
+                if(dialog_is_show == false)
+                {
+                    show_error_dialog();
+                }
             }
         });
+    }
+
+    private void show_error_dialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("مشکل در ارتباط با سرور");
+        dialog.setMessage("امکان برقراری ارتباط با سرور وجود ندارد لطفا بعدا امتحان کنید!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog_is_show = true;
     }
 }
