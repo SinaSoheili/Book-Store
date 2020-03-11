@@ -13,6 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ir.sinasoheili.bookstore.MODEL.Book;
+import ir.sinasoheili.bookstore.PRESENTER.Book_Bought_Contract;
+import ir.sinasoheili.bookstore.PRESENTER.Book_Bought_Presenter;
 import ir.sinasoheili.bookstore.PRESENTER.User_Api;
 import ir.sinasoheili.bookstore.R;
 import retrofit2.Call;
@@ -21,13 +23,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Book_Bought_List_Activity extends AppCompatActivity
+public class Book_Bought_List_Activity extends AppCompatActivity implements Book_Bought_Contract.Book_Bought_Contract_view
 {
-
-    private ArrayList<Book> book_list;
     private int user_id;
     private ListView lv;
     private TextView tv_empty_list;
+    private Book_Bought_Contract.Book_Bought_Contract_presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,20 +41,9 @@ public class Book_Bought_List_Activity extends AppCompatActivity
         {
             user_id = bundle.getInt("user_id");
         }
+
         init_obj();
-        init_book_list();
-    }
 
-    private void init_obj()
-    {
-        lv = findViewById(R.id.lv_book_bought_page);
-        book_list = new ArrayList<>();
-
-        tv_empty_list = findViewById(R.id.tv_empty_list_book_bought_page);
-    }
-
-    private void init_book_list()
-    {
         if(user_id == -1)
         {
             Toast t = Toast.makeText(this , "لطفا وارد حساب کاربری خود شوید !!" , Toast.LENGTH_SHORT);
@@ -62,34 +52,22 @@ public class Book_Bought_List_Activity extends AppCompatActivity
             return;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(User_Api.base_url)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
-
-        User_Api api = retrofit.create(User_Api.class);
-        Call<ArrayList<Book>> call = api.get_book_of_user_bought(user_id);
-        call.enqueue(new Callback<ArrayList<Book>>()
-        {
-            @Override
-            public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
-            {
-                book_list = response.body();
-                init_list_view();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Book>> call, Throwable t)
-            {
-                //todo : what to do if cannot connect to server
-                Toast.makeText(Book_Bought_List_Activity.this, "can not connect to server", Toast.LENGTH_SHORT).show();
-            }
-        });
+        presenter.get_bought_book_list(user_id);
     }
 
-    private void init_list_view()
+    private void init_obj()
     {
-        if(book_list.isEmpty() == true)
+        lv = findViewById(R.id.lv_book_bought_page);
+
+        tv_empty_list = findViewById(R.id.tv_empty_list_book_bought_page);
+
+        presenter = new Book_Bought_Presenter(getApplicationContext() , this);
+    }
+
+    @Override
+    public void show_book_list(ArrayList<Book> list)
+    {
+        if(list.isEmpty() == true)
         {
             tv_empty_list.setVisibility(View.VISIBLE);
         }
@@ -97,7 +75,8 @@ public class Book_Bought_List_Activity extends AppCompatActivity
         {
             tv_empty_list.setVisibility(View.GONE);
         }
-        ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(this , book_list);
+
+        ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(this , list);
         lv.setAdapter(adapter);
     }
 }
