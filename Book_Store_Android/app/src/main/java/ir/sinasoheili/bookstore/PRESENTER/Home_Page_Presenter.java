@@ -38,7 +38,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
 
     //function's
     @Override
-    public void show_top_discount(final RecyclerView rv)
+    public void get_top_discount()
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
@@ -53,18 +53,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
-                {
-                    @Override
-                    public void OnClick(Book book)
-                    {
-                        Intent intent = new Intent(context , Book_Content.class);
-                        intent.putExtra("BOOK" , book);
-                        context.startActivity(intent);
-                    }
-                });
-                rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
-                rv.setAdapter(adapter);
+                home_page_view.show_rv_top_discount(items);
             }
 
             @Override
@@ -77,7 +66,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     }
 
     @Override
-    public void show_top_sell(final RecyclerView rv)
+    public void get_top_sell()
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
@@ -92,18 +81,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
-                {
-                    @Override
-                    public void OnClick(Book book)
-                    {
-                        Intent intent = new Intent(context , Book_Content.class);
-                        intent.putExtra("BOOK" , book);
-                        context.startActivity(intent);
-                    }
-                });
-                rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
-                rv.setAdapter(adapter);
+                home_page_view.show_rv_top_sell(items);
             }
 
             @Override
@@ -116,7 +94,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     }
 
     @Override
-    public void show_newest(final RecyclerView rv)
+    public void get_newest()
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
@@ -131,18 +109,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
-                {
-                    @Override
-                    public void OnClick(Book book)
-                    {
-                        Intent intent = new Intent(context , Book_Content.class);
-                        intent.putExtra("BOOK" , book);
-                        context.startActivity(intent);
-                    }
-                });
-                rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
-                rv.setAdapter(adapter);
+                home_page_view.show_rv_newest(items);
             }
 
             @Override
@@ -155,7 +122,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     }
 
     @Override
-    public void show_favoriot(final RecyclerView rv)
+    public void get_favoriot()
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
@@ -170,18 +137,7 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
                 ArrayList<Book> items = response.body();
-                RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
-                {
-                    @Override
-                    public void OnClick(Book book)
-                    {
-                        Intent intent = new Intent(context , Book_Content.class);
-                        intent.putExtra("BOOK" , book);
-                        context.startActivity(intent);
-                    }
-                });
-                rv.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
-                rv.setAdapter(adapter);
+                home_page_view.show_rv_favoriot(items);
             }
 
             @Override
@@ -191,17 +147,5 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
                 Toast.makeText(context, "can not connect to server", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void show_banner1(ImageView vi)
-    {
-        //TODO:download image of banner and show that
-    }
-
-    @Override
-    public void show_banner2(ImageView vi)
-    {
-        //TODO:download image of banner and show that
     }
 }

@@ -1,14 +1,12 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,13 +19,7 @@ import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.PRESENTER.Home_Page_Contract;
 import ir.sinasoheili.bookstore.PRESENTER.Home_Page_Presenter;
-import ir.sinasoheili.bookstore.PRESENTER.List_Book_API;
 import ir.sinasoheili.bookstore.R;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_Page_View
 {
@@ -48,12 +40,10 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
 
         init_obj();
 
-        presenter.show_top_discount(rv_top_discount);
-        presenter.show_top_sell(rv_top_sell);
-        presenter.show_favoriot(rv_favoriot);
-        presenter.show_newest(rv_newest);
-        presenter.show_banner1(iv_banner1);
-        presenter.show_banner2(iv_banner2);
+        presenter.get_top_discount();
+        presenter.get_top_sell();
+        presenter.get_favoriot();
+        presenter.get_newest();
 
         return root_view;
     }
@@ -69,5 +59,73 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
 
         iv_banner1 = root_view.findViewById(R.id.home_page_imageview_banner1);
         iv_banner2 = root_view.findViewById(R.id.home_page_imageview_banner2);
+    }
+
+    @Override
+    public void show_rv_top_discount(ArrayList<Book> items)
+    {
+        RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context , items , new Book_Item_Click_Listener()
+        {
+            @Override
+            public void OnClick(Book book)
+            {
+                Intent intent = new Intent(context , Book_Content.class);
+                intent.putExtra("BOOK" , book);
+                context.startActivity(intent);
+            }
+        });
+        rv_top_discount.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
+        rv_top_discount.setAdapter(adapter);
+    }
+
+    @Override
+    public void show_rv_top_sell(ArrayList<Book> items)
+    {
+        RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+        {
+            @Override
+            public void OnClick(Book book)
+            {
+                Intent intent = new Intent(context , Book_Content.class);
+                intent.putExtra("BOOK" , book);
+                context.startActivity(intent);
+            }
+        });
+        rv_top_sell.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
+        rv_top_sell.setAdapter(adapter);
+    }
+
+    @Override
+    public void show_rv_newest(ArrayList<Book> items)
+    {
+        RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+        {
+            @Override
+            public void OnClick(Book book)
+            {
+                Intent intent = new Intent(context , Book_Content.class);
+                intent.putExtra("BOOK" , book);
+                context.startActivity(intent);
+            }
+        });
+        rv_newest.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
+        rv_newest.setAdapter(adapter);
+    }
+
+    @Override
+    public void show_rv_favoriot(ArrayList<Book> items)
+    {
+        RecyclerView_Adapter_HomePage adapter = new RecyclerView_Adapter_HomePage(context, items, new Book_Item_Click_Listener()
+        {
+            @Override
+            public void OnClick(Book book)
+            {
+                Intent intent = new Intent(context , Book_Content.class);
+                intent.putExtra("BOOK" , book);
+                context.startActivity(intent);
+            }
+        });
+        rv_favoriot.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
+        rv_favoriot.setAdapter(adapter);
     }
 }
