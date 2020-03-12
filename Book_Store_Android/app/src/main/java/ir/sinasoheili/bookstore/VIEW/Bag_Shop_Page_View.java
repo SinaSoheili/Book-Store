@@ -30,7 +30,7 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
     private ListView list_view_Bag_Shop_page;
     private Bag_Shop_Page_Contract.Bag_Shop_Page_Contract_presenter presenter;
     private ArrayList<Book> book_list;
-    private ListView_Adapter_SearchPage adapter;
+    private ListView_Adapter_Bought_List_Page adapter;
     private TextView tv_empty_list;
 
     private ArrayList<String> keys;
@@ -79,7 +79,7 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
             tv_empty_list.setVisibility(View.GONE);
         }
 
-        adapter = new ListView_Adapter_SearchPage(getContext() , book_list);
+        adapter = new ListView_Adapter_Bought_List_Page(getContext() , book_list);
         list_view_Bag_Shop_page.setAdapter(adapter);
     }
 
