@@ -63,7 +63,7 @@ create 'Comment' table :
                 )
                 ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci;"
 
-and added foreign key 'USER_ID' and 'BOOK_ID' from 'user' and 'book'  table.
+and added foreign key 'USER_ID' and 'BOOK_ID' from 'user' and 'book'  table. // user id and book id must be index and not be unique
 
 create 'User Buy' table :
                 "CREATE TABLE `db_book_store`.`user_buy`
@@ -85,5 +85,5 @@ create 'like_book' table :
                     UNIQUE `unique with book id together` (`USER_ID`, `BOOK_ID`)
                   )
                   ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_unicode_ci;"
-                  
+
 and add foreign key 'USER_ID' , 'BOOK_ID' from 'user' , 'book' table.
