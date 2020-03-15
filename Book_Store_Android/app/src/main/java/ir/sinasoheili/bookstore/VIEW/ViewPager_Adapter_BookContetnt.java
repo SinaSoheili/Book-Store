@@ -1,6 +1,8 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +11,31 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import java.util.ArrayList;
+import java.io.InputStream;
 
+import ir.sinasoheili.bookstore.PRESENTER.Image_API;
 import ir.sinasoheili.bookstore.R;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ViewPager_Adapter_BookContetnt extends PagerAdapter
 {
     private Context context;
-    private int id_image1 , id_image2;
+    private String s_image_front, s_image_back;
+    private Retrofit retrofit;
+    private Image_API api;
 
-    public ViewPager_Adapter_BookContetnt(Context context , int id_image1 , int id_image2)
+    public ViewPager_Adapter_BookContetnt(Context context , String s_image_front , String s_image_back)
     {
         this.context = context;
-        this.id_image1 = id_image1;
-        this.id_image2 = id_image2;
+        this.s_image_front = s_image_front;
+        this.s_image_back = s_image_back;
+
+        retrofit = new Retrofit.Builder().baseUrl(Image_API.base_url).build();
+        api = retrofit.create(Image_API.class);
     }
 
     @NonNull
@@ -31,14 +44,59 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
     {
         LayoutInflater inflateer = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflateer.inflate(R.layout.view_pager_item_book_content , null , false);
-        ImageView iv = view.findViewById(R.id.iv_item_viewpager_book_contetn);
+        final ImageView iv = view.findViewById(R.id.iv_item_viewpager_book_contetn);
+        //todo : if image's are in cache don't download them
         if(position == 0)
         {
-            iv.setImageResource(id_image1);
+            if(s_image_front != null)
+            {
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
+                call.enqueue(new Callback<ResponseBody>()
+                {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    {
+                        InputStream is = response.body().byteStream();
+                        iv.setImageBitmap(BitmapFactory.decodeStream(is));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv.setImageResource(R.drawable.book);
+                    }
+                });
+            }
+            else
+            {
+                iv.setImageResource(R.drawable.book);
+            }
         }
-        else
+        else if(position == 1)
         {
-            iv.setImageResource(id_image2);
+            if(s_image_back != null)
+            {
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
+                call.enqueue(new Callback<ResponseBody>()
+                {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    {
+                        InputStream is = response.body().byteStream();
+                        iv.setImageBitmap(BitmapFactory.decodeStream(is));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv.setImageResource(R.drawable.book);
+                    }
+                });
+            }
+            else
+            {
+                iv.setImageResource(R.drawable.book);
+            }
         }
         container.addView(view);
 

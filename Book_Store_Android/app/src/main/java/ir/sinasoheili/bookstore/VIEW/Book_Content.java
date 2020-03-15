@@ -8,6 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -29,8 +33,10 @@ import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.MODEL.Comment;
 import ir.sinasoheili.bookstore.MODEL.User;
 import ir.sinasoheili.bookstore.PRESENTER.Comment_API;
+import ir.sinasoheili.bookstore.PRESENTER.Image_API;
 import ir.sinasoheili.bookstore.PRESENTER.Like_API;
 import ir.sinasoheili.bookstore.R;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -129,7 +135,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void init_view_pager()
     {
-        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this , R.drawable.book , R.drawable.book);
+        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this , book.getFront_pic() , book.getBack_pic());
         viewpager.setAdapter(adapter);
     }
 
