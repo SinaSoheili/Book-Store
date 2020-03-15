@@ -1,7 +1,14 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.usage.NetworkStatsManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +30,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         init_obj();
+
+        ConnectivityManager connect_manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo net_info = connect_manager.getActiveNetworkInfo();
+        if(net_info == null || !(net_info.isConnected()))
+        {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("اتصال به اینترنت");
+            dialog.setMessage("اتصال به اینترنت ممکن نمی باشد !! لطفا سرویس دیتای خود را چک کنید!");
+            dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    finish();
+                }
+            });
+            dialog.setCancelable(false);
+            dialog.show();
+        }
 
         bnv.setSelectedItemId(R.id.bottom_navigation_view_home_item);
     }
