@@ -122,6 +122,8 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
                 iv.setImageResource(R.drawable.book);
             }
         }
+
+        iv.setClipToOutline(true);
         container.addView(view);
 
         return view;

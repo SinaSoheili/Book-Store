@@ -126,6 +126,8 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
             {
                 iv_book.setImageResource(R.drawable.book);
             }
+
+            iv_book.setClipToOutline(true);
             this.tv_book_title.setText(book.getName());
             this.tv_book_autor.setText(book.getAutor_name());
         }

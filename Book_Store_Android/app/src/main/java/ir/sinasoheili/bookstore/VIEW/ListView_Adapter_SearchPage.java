@@ -122,6 +122,7 @@ public class ListView_Adapter_SearchPage extends ArrayAdapter<Book>
             {
                 iv_book.setImageResource(R.drawable.book);
             }
+            iv_book.setClipToOutline(true);
             tv_book_name.setText(book.getName());
             tv_book_autor_name.setText("نام نویسنده : "+book.getAutor_name());
             tv_publisher.setText("انتشارات "+book.getPublisher());
