@@ -19,6 +19,7 @@
             android:layout_margin="@dimen/recycler_view_item_home_page_margin_element"
             android:src="@drawable/book"
             android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
             />
 
         <TextView

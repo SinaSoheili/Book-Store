@@ -12,6 +12,7 @@
         android:layout_height="130dp"
         android:src="@drawable/book"
         android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
         />
 
     <RelativeLayout
