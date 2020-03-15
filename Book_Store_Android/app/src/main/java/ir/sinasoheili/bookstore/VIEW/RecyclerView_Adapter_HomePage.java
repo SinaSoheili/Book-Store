@@ -1,6 +1,8 @@
 package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
+import ir.sinasoheili.bookstore.PRESENTER.Image_API;
 import ir.sinasoheili.bookstore.R;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<RecyclerView_Adapter_HomePage.ViewHolder_RecyclerView_HomePage>
 {
@@ -54,6 +64,8 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
         private CardView root_view;
         private ImageView iv_book;
         private TextView tv_book_title , tv_book_autor;
+        private Retrofit retrofit;
+        private Image_API api;
 
         public ViewHolder_RecyclerView_HomePage(@NonNull View itemView)
         {
@@ -62,6 +74,9 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
             iv_book = itemView.findViewById(R.id.iv_item_recyclerview_homepage);
             tv_book_title = itemView.findViewById(R.id.tv_book_title_item_recyclerview_homepage);
             tv_book_autor = itemView.findViewById(R.id.tv_book_autor_item_recyclerview_homepage);
+
+            retrofit = new Retrofit.Builder().baseUrl(Image_API.base_url).build();
+            api = retrofit.create(Image_API.class);
         }
 
         public void fill(final Book book , final Book_Item_Click_Listener listener)
@@ -74,9 +89,31 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
                     listener.OnClick(book);
                 }
             });
+
             if(book.getFront_pic() != null)
             {
-                //TODO : download image
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
+                call.enqueue(new Callback<ResponseBody>()
+                {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    {
+                        InputStream is = response.body().byteStream();
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        iv_book.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv_book.setImageResource(R.drawable.book);
+                        //todo : cash image
+                    }
+                });
+            }
+            else
+            {
+                iv_book.setImageResource(R.drawable.book);
             }
             this.tv_book_title.setText(book.getName());
             this.tv_book_autor.setText(book.getAutor_name());
