@@ -3,12 +3,12 @@ package ir.sinasoheili.bookstore.VIEW;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.LruCache;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,37 +32,40 @@ public class ListView_Adapter_Bag_Shop_Page extends ArrayAdapter<Book>
 {
     private Context context;
     private ArrayList<Book> book_item;
+    private LruCache<Integer , Bitmap> cache;
 
     public ListView_Adapter_Bag_Shop_Page(@NonNull Context context , @NonNull ArrayList<Book> objects)
     {
         super(context, R.layout.list_view_item_bag_list_page, objects);
         this.context = context;
         this.book_item = objects;
+
+        cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory() / 12));
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        List_view_holder_Bought_list_page holder;
+        List_view_holder_Bag_Shop_list_page holder;
 
         if(convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_view_item_bag_list_page, null , false);
-            holder = new List_view_holder_Bought_list_page(convertView);
+            holder = new List_view_holder_Bag_Shop_list_page(convertView);
             convertView.setTag(holder);
         }
         else
         {
-            holder = (List_view_holder_Bought_list_page) convertView.getTag();
+            holder = (List_view_holder_Bag_Shop_list_page) convertView.getTag();
         }
 
         holder.fill(book_item.get(position));
         return convertView;
     }
 
-    public class List_view_holder_Bought_list_page
+    public class List_view_holder_Bag_Shop_list_page
     {
         private ImageView iv_book;
         private TextView tv_book_name;
@@ -72,7 +75,7 @@ public class ListView_Adapter_Bag_Shop_Page extends ArrayAdapter<Book>
         private Retrofit retrofit;
         private Image_API api;
 
-        public List_view_holder_Bought_list_page(@NonNull View itemView)
+        public List_view_holder_Bag_Shop_list_page(@NonNull View itemView)
         {
             iv_book             = itemView.findViewById(R.id.iv_item_recyclerview_boughtList_page);
             tv_book_name        = itemView.findViewById(R.id.tv_book_name_item_recyclerview_BoughtList_page);
@@ -84,33 +87,42 @@ public class ListView_Adapter_Bag_Shop_Page extends ArrayAdapter<Book>
             api = retrofit.create(Image_API.class);
         }
 
-        public void fill(Book book)
+        public void fill(final Book book)
         {
             if(book.getFront_pic() != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bitmap = null;
+                if((bitmap = cache.get(book.getId())) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv_book.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-                        iv_book.setImageBitmap(bitmap);
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            iv_book.setImageBitmap(bitmap);
+                            cache.put(book.getId() , bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv_book.setImageResource(R.drawable.book);
-                        //todo : cash image
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv_book.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {
                 iv_book.setImageResource(R.drawable.book);
             }
+
             tv_book_name.setText(book.getName());
             tv_book_autor_name.setText("نام نویسنده : "+book.getAutor_name());
             tv_price.setText(String.valueOf(book.getPrice())+" ریال");

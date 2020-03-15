@@ -3,6 +3,7 @@ package ir.sinasoheili.bookstore.VIEW;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
     private String s_image_front, s_image_back;
     private Retrofit retrofit;
     private Image_API api;
+    private LruCache<String , Bitmap> cache;
 
     public ViewPager_Adapter_BookContetnt(Context context , String s_image_front , String s_image_back)
     {
@@ -36,6 +38,8 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
 
         retrofit = new Retrofit.Builder().baseUrl(Image_API.base_url).build();
         api = retrofit.create(Image_API.class);
+
+        cache = new LruCache<>((int) (Runtime.getRuntime().freeMemory() / 12));
     }
 
     @NonNull
@@ -45,27 +49,37 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         LayoutInflater inflateer = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflateer.inflate(R.layout.view_pager_item_book_content , null , false);
         final ImageView iv = view.findViewById(R.id.iv_item_viewpager_book_contetn);
-        //todo : if image's are in cache don't download them
+
         if(position == 0)
         {
             if(s_image_front != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bitmap = null;
+                if((bitmap = cache.get(s_image_front)) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        iv.setImageBitmap(BitmapFactory.decodeStream(is));
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            iv.setImageBitmap(bitmap);
+                            cache.put(s_image_front , bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv.setImageResource(R.drawable.book);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {
@@ -76,22 +90,32 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_back != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bitmap = null;
+                if((bitmap = cache.get(s_image_back)) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        iv.setImageBitmap(BitmapFactory.decodeStream(is));
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            iv.setImageBitmap(bitmap);
+                            cache.put(s_image_back , bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv.setImageResource(R.drawable.book);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {

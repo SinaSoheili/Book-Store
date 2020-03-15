@@ -3,6 +3,8 @@ package ir.sinasoheili.bookstore.VIEW;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,16 +27,17 @@ import retrofit2.Retrofit;
 
 public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<RecyclerView_Adapter_HomePage.ViewHolder_RecyclerView_HomePage>
 {
-
     private ArrayList<Book> all_book;
     private Context context;
     private Book_Item_Click_Listener listener;
+    private LruCache<Integer , Bitmap> cache;
 
     public RecyclerView_Adapter_HomePage(Context context , ArrayList<Book> all_book , Book_Item_Click_Listener listener)
     {
         this.context = context;
         this.all_book = all_book;
         this.listener = listener;
+        this.cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory() / 12));
     }
 
     @NonNull
@@ -92,24 +95,32 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
 
             if(book.getFront_pic() != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bitmap = null;
+                if((bitmap = cache.get(book.getId())) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv_book.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-                        iv_book.setImageBitmap(bitmap);
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            iv_book.setImageBitmap(bitmap);
+                            cache.put(book.getId() , bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv_book.setImageResource(R.drawable.book);
-                        //todo : cash image
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv_book.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {
