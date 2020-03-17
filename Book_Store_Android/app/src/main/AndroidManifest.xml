@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VIEW.IntroSlider"></activity>
+        <activity android:name=".VIEW.IntroSlider" android:theme="@style/intro_slider_style"></activity>
         <activity android:name=".VIEW.Book_Bought_List_Activity" />
         <activity android:name=".VIEW.Book_Content" />
         <activity android:name=".VIEW.MainActivity">
