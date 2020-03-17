@@ -16,5 +16,10 @@
     <string name="search_page_filter_book_autor_name">نام نویسنده</string>
     <string name="search_page_filter_book_group_name">گروه</string>
 
+    <string name="IntroSlider_next">بعدی</string>
+    <string name="IntroSlider_prev">قبلی</string>
+    <string name="IntroSlider_slide1">جست و جو سریع کتاب</string>
+    <string name="IntroSlider_slide2">قیمت مناسب</string>
+    <string name="IntroSlider_slide3">خرید آنلاین کتاب</string>
 
 </resources>

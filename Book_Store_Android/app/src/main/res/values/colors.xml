@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#FF352A</color>
 
+    <color name="introslider_background">#FFE9A2</color>
     <color name="home_page_background">#FFE9A2</color>
     <color name="search_page_background">#FFE9A2</color>
     <color name="bag_shop_page_background">#FFE9A2</color>
@@ -42,5 +43,8 @@
     <color name="content_comment_text_color">#353535</color>
 
     <color name="submit_button_dialog_text_color">#FF352A</color>
+
+    <color name="introslider_text_color">#4A4A4A</color>
+    <color name="introslider_btn_color">#FF352A</color>
 
 </resources>

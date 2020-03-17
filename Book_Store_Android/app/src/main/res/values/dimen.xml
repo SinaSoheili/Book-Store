@@ -14,4 +14,6 @@
 
     <dimen name="recycler_view_item_home_page_margin_element">4dp</dimen>
 
+    <dimen name="introSlider_text_size">17sp</dimen>
+
 </resources>
