@@ -40,24 +40,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             startActivity(new Intent(MainActivity.this , IntroSlider.class));
         }
 
-        ConnectivityManager connect_manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo net_info = connect_manager.getActiveNetworkInfo();
-        if(net_info == null || !(net_info.isConnected()))
-        {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setTitle("اتصال به اینترنت");
-            dialog.setMessage("اتصال به اینترنت ممکن نمی باشد !! لطفا سرویس دیتای خود را چک کنید!");
-            dialog.setPositiveButton("باشه", new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                    finish();
-                }
-            });
-            dialog.setCancelable(false);
-            dialog.show();
-        }
+        check_connection();
 
         bnv.setSelectedItemId(R.id.bottom_navigation_view_home_item);
     }
@@ -73,6 +56,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         search_page = new Search_Page_View();
         bag_shop_page = new Bag_Shop_Page_View();
         profile_page = new Profile_Page_View();
+    }
+
+    public void check_connection()
+    {
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if((cm.getActiveNetworkInfo() == null) || (cm.getActiveNetworkInfo().isConnected() == false))
+        {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+                                            .setTitle("مشکل در اتصال به اینترنت")
+                                            .setMessage("اتصال به اینترنت ممکن نمی باشد !! لطفا سرویس دیتای خود را چک کنید")
+                                            .setCancelable(false)
+                                            .setNeutralButton("باشه", new DialogInterface.OnClickListener()
+                                            {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which)
+                                                {
+                                                    finish();
+                                                }
+                                            });
+            dialog.show();
+        }
     }
 
     @Override
