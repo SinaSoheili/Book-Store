@@ -3,10 +3,12 @@ package ir.sinasoheili.bookstore.VIEW;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +30,8 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
     private View root_view;
     private RecyclerView rv_top_discount , rv_top_sell , rv_newest , rv_favoriot;
     private ImageView iv_banner1 , iv_banner2;
+
+    private ProgressBar progressbar;
 
     private Home_Page_Contract.Home_Page_Presenter presenter;
 
@@ -59,6 +63,8 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
 
         iv_banner1 = root_view.findViewById(R.id.home_page_imageview_banner1);
         iv_banner2 = root_view.findViewById(R.id.home_page_imageview_banner2);
+
+        progressbar = root_view.findViewById(R.id.Home_page_progress_bar);
     }
 
     @Override
@@ -127,5 +133,19 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
         });
         rv_favoriot.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , true));
         rv_favoriot.setAdapter(adapter);
+    }
+
+    @Override
+    public void show_progress_bar()
+    {
+        progressbar.setVisibility(View.VISIBLE);
+        Log.i("tag" , "show");
+    }
+
+    @Override
+    public void gone_progress_bar()
+    {
+        progressbar.setVisibility(View.INVISIBLE);
+        Log.i("tag" , "gone");
     }
 }
