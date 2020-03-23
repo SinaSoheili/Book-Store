@@ -16,6 +16,8 @@ public interface Home_Page_Contract
         public void show_rv_top_sell(ArrayList<Book> items);
         public void show_rv_newest(ArrayList<Book> items);
         public void show_rv_favoriot(ArrayList<Book> items);
+        public void show_progress_bar();
+        public void gone_progress_bar();
     }
 
     public interface Home_Page_Presenter

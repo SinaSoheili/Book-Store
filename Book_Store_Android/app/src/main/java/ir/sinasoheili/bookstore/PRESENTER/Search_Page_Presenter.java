@@ -29,6 +29,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
     @Override
     public void search_book_by_name(String book_name)
     {
+        search_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(Search_Book_API.base_url)
                                 .addConverterFactory(GsonConverterFactory.create())
@@ -41,6 +43,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                search_page_view.hide_progress_bar();
+
                 ArrayList<Book> items = response.body();
                 search_page_view.show_search_result(items);
             }
@@ -59,6 +63,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
     @Override
     public void search_book_by_autor_name(String book_autor_name)
     {
+        search_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Search_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -71,6 +77,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                search_page_view.hide_progress_bar();
+
                 ArrayList<Book> items = response.body();
                 search_page_view.show_search_result(items);
             }
@@ -89,6 +97,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
     @Override
     public void search_book_by_group_name(String book_group_name)
     {
+        search_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Search_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -101,6 +111,8 @@ public class Search_Page_Presenter implements Search_Page_Contract.Search_Page_p
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                search_page_view.hide_progress_bar();
+
                 ArrayList<Book> items = response.body();
                 search_page_view.show_search_result(items);
             }

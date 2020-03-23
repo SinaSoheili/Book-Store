@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class Book_Bought_List_Activity extends AppCompatActivity implements Book
     private int user_id;
     private ListView lv;
     private TextView tv_empty_list;
+    private ProgressBar progressbar;
     private Book_Bought_Contract.Book_Bought_Contract_presenter presenter;
 
     @Override
@@ -61,6 +63,8 @@ public class Book_Bought_List_Activity extends AppCompatActivity implements Book
 
         tv_empty_list = findViewById(R.id.tv_empty_list_book_bought_page);
 
+        progressbar = findViewById(R.id.book_bought_progress_bar);
+
         presenter = new Book_Bought_Presenter(getApplicationContext() , this);
     }
 
@@ -78,5 +82,17 @@ public class Book_Bought_List_Activity extends AppCompatActivity implements Book
 
         ListView_Adapter_SearchPage adapter = new ListView_Adapter_SearchPage(this , list);
         lv.setAdapter(adapter);
+    }
+
+    @Override
+    public void show_progress_bar()
+    {
+        progressbar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hide_progress_bar()
+    {
+        progressbar.setVisibility(View.GONE);
     }
 }

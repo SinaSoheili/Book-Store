@@ -43,6 +43,8 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     @Override
     public void get_top_discount()
     {
+        home_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -55,6 +57,8 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                home_page_view.gone_progress_bar();
+
                 ArrayList<Book> items = response.body();
                 home_page_view.show_rv_top_discount(items);
             }
@@ -73,6 +77,8 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     @Override
     public void get_top_sell()
     {
+        home_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -85,6 +91,8 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                home_page_view.gone_progress_bar();
+
                 ArrayList<Book> items = response.body();
                 home_page_view.show_rv_top_sell(items);
             }
@@ -103,6 +111,10 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     @Override
     public void get_newest()
     {
+        home_page_view.gone_progress_bar();
+
+        home_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -133,6 +145,10 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
     @Override
     public void get_favoriot()
     {
+        home_page_view.gone_progress_bar();
+
+        home_page_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(List_Book_API.base_url)
                 .addConverterFactory(GsonConverterFactory.create())

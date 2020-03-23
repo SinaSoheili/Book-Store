@@ -8,6 +8,8 @@ public interface Search_Page_Contract
     public interface Search_Page_view
     {
         public void show_search_result(ArrayList<Book> items);
+        public void show_progress_bar();
+        public void hide_progress_bar();
     }
 
     public interface Search_Page_presenter
