@@ -8,6 +8,8 @@ public interface Bag_Shop_Page_Contract
     {
         public void show_list();
         public void update_list(Book book);
+        public void show_progress_bar();
+        public void hide_progress_bar();
     }
 
     public interface Bag_Shop_Page_Contract_presenter

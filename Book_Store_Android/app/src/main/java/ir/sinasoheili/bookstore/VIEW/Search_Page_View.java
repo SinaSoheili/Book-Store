@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
     private TextView tv_filter_title;
     private TextView tv_list_empty;
 
+    private ProgressBar progressbar;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater , @Nullable ViewGroup container , @Nullable Bundle savedInstanceState)
@@ -70,6 +73,8 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
         searchview.setOnQueryTextListener(this);
 
         tv_list_empty = root_view.findViewById(R.id.tv_list_empty_Search_page);
+
+        progressbar = root_view.findViewById(R.id.Search_page_progress_bar);
     }
 
     @Override
@@ -129,6 +134,18 @@ public class Search_Page_View extends Fragment implements Search_Page_Contract.S
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void show_progress_bar()
+    {
+        progressbar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hide_progress_bar()
+    {
+        progressbar.setVisibility(View.GONE);
     }
 
     @Override

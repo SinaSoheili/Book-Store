@@ -30,6 +30,8 @@ public class Book_Bought_Presenter implements Book_Bought_Contract.Book_Bought_C
     @Override
     public void get_bought_book_list(int user_id)
     {
+        book_bought_view.show_progress_bar();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(User_Api.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,6 +44,8 @@ public class Book_Bought_Presenter implements Book_Bought_Contract.Book_Bought_C
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
             {
+                book_bought_view.hide_progress_bar();
+
                 book_bought_view.show_book_list(response.body());
             }
 

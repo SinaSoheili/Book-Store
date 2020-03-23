@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
     private ArrayList<Book> book_list;
     private ListView_Adapter_Bag_Shop_Page adapter;
     private TextView tv_empty_list;
+
+    private ProgressBar progressBar;
 
     private ArrayList<String> keys;
     private SharedPreferences pref;
@@ -64,6 +67,8 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
         presenter = new Bag_Shop_Page_Presenter(getContext() , this);
 
         book_list = new ArrayList<>();
+
+        progressBar = root_view.findViewById(R.id.bag_shop_page_progress_bar);
     }
 
     @Override
@@ -97,6 +102,18 @@ public class Bag_Shop_Page_View extends Fragment implements Bag_Shop_Page_Contra
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void show_progress_bar()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hide_progress_bar()
+    {
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

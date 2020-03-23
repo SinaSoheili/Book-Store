@@ -44,6 +44,8 @@ public class Bag_Shop_Page_Presenter implements Bag_Shop_Page_Contract.Bag_Shop_
         Search_Book_API api = retrofit.create(Search_Book_API.class);
         for(int i=0 ; i<keys.size() ; i++)
         {
+            bag_shop_page_view.show_progress_bar();
+
             int id = Integer.parseInt(keys.get(i));
             Call<ArrayList<Book>> call = api.search_book_by_id(id);
             call.enqueue(new Callback<ArrayList<Book>>()
@@ -51,6 +53,8 @@ public class Bag_Shop_Page_Presenter implements Bag_Shop_Page_Contract.Bag_Shop_
                 @Override
                 public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response)
                 {
+                    bag_shop_page_view.hide_progress_bar();
+
                     Book cb = response.body().get(0);
                     bag_shop_page_view.update_list(cb);
                 }
