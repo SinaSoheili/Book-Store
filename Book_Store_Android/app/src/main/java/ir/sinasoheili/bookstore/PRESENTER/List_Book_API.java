@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 
 public interface List_Book_API
 {
-    public static String base_url = "http://10.0.2.2/book_store_server/";
+    public static String base_url = "http://sinasoheili.ir/";
 
     @GET("book_list.php?type=top_discount")
     Call<ArrayList<Book>> top_discount();

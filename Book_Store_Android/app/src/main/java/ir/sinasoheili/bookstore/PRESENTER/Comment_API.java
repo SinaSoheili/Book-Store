@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface Comment_API
 {
-    public static String base_url = "http://10.0.2.2/book_store_server/";
+    public static String base_url = "http://sinasoheili.ir/";
 
     @GET("get_book_comment.php")
     Call<ArrayList<Comment>> get_comment(@Query("book_id") int book_id);
