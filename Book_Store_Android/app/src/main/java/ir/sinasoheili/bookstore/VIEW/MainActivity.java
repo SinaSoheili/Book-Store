@@ -9,9 +9,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import ir.sinasoheili.bookstore.R;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private Profile_Page_View profile_page;
 
     private SharedPreferences pref;
+
+    public static LruCache<String , Bitmap> cache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         search_page = new Search_Page_View();
         bag_shop_page = new Bag_Shop_Page_View();
         profile_page = new Profile_Page_View();
+
+        cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory()/6));
     }
 
     public void check_connection()

@@ -88,23 +88,32 @@ public class ListView_Adapter_Bag_Shop_Page extends ArrayAdapter<Book>
         {
             if(book.getFront_pic() != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic()+".jpg");
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bimp = null;
+                if((bimp = MainActivity.cache.get(book.getFront_pic())) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv_book.setImageBitmap(bimp);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic()+".jpg");
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-                        iv_book.setImageBitmap(bitmap);
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            MainActivity.cache.put(book.getFront_pic() , bitmap);
+                            iv_book.setImageBitmap(bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv_book.setImageResource(R.drawable.book);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv_book.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {

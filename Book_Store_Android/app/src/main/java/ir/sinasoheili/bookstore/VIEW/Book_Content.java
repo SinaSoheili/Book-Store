@@ -135,7 +135,7 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void init_view_pager()
     {
-        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this , book.getFront_pic() , book.getBack_pic());
+        ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this ,book.getFront_pic() , book.getBack_pic());
         viewpager.setAdapter(adapter);
     }
 

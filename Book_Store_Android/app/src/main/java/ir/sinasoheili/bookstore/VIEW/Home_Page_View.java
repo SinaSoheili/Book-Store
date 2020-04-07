@@ -139,13 +139,11 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
     public void show_progress_bar()
     {
         progressbar.setVisibility(View.VISIBLE);
-        Log.i("tag" , "show");
     }
 
     @Override
     public void gone_progress_bar()
     {
         progressbar.setVisibility(View.INVISIBLE);
-        Log.i("tag" , "gone");
     }
 }

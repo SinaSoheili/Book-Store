@@ -51,23 +51,32 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_front != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front+".jpg");
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bimp = null;
+                if((bimp = MainActivity.cache.get(s_image_front)) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv.setImageBitmap(bimp);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front+".jpg");
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-                        iv.setImageBitmap(bitmap);
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            MainActivity.cache.put(s_image_front, bitmap);
+                            iv.setImageBitmap(bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv.setImageResource(R.drawable.book);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {
@@ -78,23 +87,32 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_back != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back+".jpg");
-                call.enqueue(new Callback<ResponseBody>()
+                Bitmap bimp = null;
+                if((bimp = MainActivity.cache.get(s_image_back)) != null)
                 {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    iv.setImageBitmap(bimp);
+                }
+                else
+                {
+                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back+".jpg");
+                    call.enqueue(new Callback<ResponseBody>()
                     {
-                        InputStream is = response.body().byteStream();
-                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-                        iv.setImageBitmap(bitmap);
-                    }
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                        {
+                            InputStream is = response.body().byteStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            MainActivity.cache.put(s_image_back , bitmap);
+                            iv.setImageBitmap(bitmap);
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
-                    {
-                        iv.setImageResource(R.drawable.book);
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t)
+                        {
+                            iv.setImageResource(R.drawable.book);
+                        }
+                    });
+                }
             }
             else
             {
