@@ -51,7 +51,7 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_front != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front+".jpg");
                 call.enqueue(new Callback<ResponseBody>()
                 {
                     @Override
@@ -78,7 +78,7 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_back != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back+".jpg");
                 call.enqueue(new Callback<ResponseBody>()
                 {
                     @Override

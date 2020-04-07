@@ -88,7 +88,7 @@ public class ListView_Adapter_SearchPage extends ArrayAdapter<Book>
         {
             if(book.getFront_pic() != null)
             {
-                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic()+".jpg");
                 call.enqueue(new Callback<ResponseBody>()
                 {
                     @Override
