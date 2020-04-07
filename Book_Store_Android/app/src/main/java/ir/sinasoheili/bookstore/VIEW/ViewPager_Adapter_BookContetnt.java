@@ -28,7 +28,6 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
     private String s_image_front, s_image_back;
     private Retrofit retrofit;
     private Image_API api;
-    private LruCache<String , Bitmap> cache;
 
     public ViewPager_Adapter_BookContetnt(Context context , String s_image_front , String s_image_back)
     {
@@ -38,8 +37,6 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
 
         retrofit = new Retrofit.Builder().baseUrl(Image_API.base_url).build();
         api = retrofit.create(Image_API.class);
-
-        cache = new LruCache<>((int) (Runtime.getRuntime().freeMemory() / 12));
     }
 
     @NonNull
@@ -54,32 +51,23 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_front != null)
             {
-                Bitmap bitmap = null;
-                if((bitmap = cache.get(s_image_front)) != null)
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
+                call.enqueue(new Callback<ResponseBody>()
                 {
-                    iv.setImageBitmap(bitmap);
-                }
-                else
-                {
-                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_front);
-                    call.enqueue(new Callback<ResponseBody>()
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
                     {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-                        {
-                            InputStream is = response.body().byteStream();
-                            Bitmap bitmap = BitmapFactory.decodeStream(is);
-                            iv.setImageBitmap(bitmap);
-                            cache.put(s_image_front , bitmap);
-                        }
+                        InputStream is = response.body().byteStream();
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        iv.setImageBitmap(bitmap);
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t)
-                        {
-                            iv.setImageResource(R.drawable.book);
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv.setImageResource(R.drawable.book);
+                    }
+                });
             }
             else
             {
@@ -90,32 +78,23 @@ public class ViewPager_Adapter_BookContetnt extends PagerAdapter
         {
             if(s_image_back != null)
             {
-                Bitmap bitmap = null;
-                if((bitmap = cache.get(s_image_back)) != null)
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
+                call.enqueue(new Callback<ResponseBody>()
                 {
-                    iv.setImageBitmap(bitmap);
-                }
-                else
-                {
-                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + s_image_back);
-                    call.enqueue(new Callback<ResponseBody>()
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
                     {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-                        {
-                            InputStream is = response.body().byteStream();
-                            Bitmap bitmap = BitmapFactory.decodeStream(is);
-                            iv.setImageBitmap(bitmap);
-                            cache.put(s_image_back , bitmap);
-                        }
+                        InputStream is = response.body().byteStream();
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        iv.setImageBitmap(bitmap);
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t)
-                        {
-                            iv.setImageResource(R.drawable.book);
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv.setImageResource(R.drawable.book);
+                    }
+                });
             }
             else
             {

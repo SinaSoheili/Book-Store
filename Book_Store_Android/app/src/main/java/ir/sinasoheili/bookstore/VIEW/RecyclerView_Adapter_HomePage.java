@@ -30,14 +30,12 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
     private ArrayList<Book> all_book;
     private Context context;
     private Book_Item_Click_Listener listener;
-    private LruCache<Integer , Bitmap> cache;
 
     public RecyclerView_Adapter_HomePage(Context context , ArrayList<Book> all_book , Book_Item_Click_Listener listener)
     {
         this.context = context;
         this.all_book = all_book;
         this.listener = listener;
-        this.cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory() / 12));
     }
 
     @NonNull
@@ -95,32 +93,23 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
 
             if(book.getFront_pic() != null)
             {
-                Bitmap bitmap = null;
-                if((bitmap = cache.get(book.getId())) != null)
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
+                call.enqueue(new Callback<ResponseBody>()
                 {
-                    iv_book.setImageBitmap(bitmap);
-                }
-                else
-                {
-                    Call<ResponseBody> call = api.get_image(Image_API.folder_url + book.getFront_pic());
-                    call.enqueue(new Callback<ResponseBody>()
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
                     {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-                        {
-                            InputStream is = response.body().byteStream();
-                            Bitmap bitmap = BitmapFactory.decodeStream(is);
-                            iv_book.setImageBitmap(bitmap);
-                            cache.put(book.getId() , bitmap);
-                        }
+                        InputStream is = response.body().byteStream();
+                        Bitmap bitmap = BitmapFactory.decodeStream(is);
+                        iv_book.setImageBitmap(bitmap);
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t)
-                        {
-                            iv_book.setImageResource(R.drawable.book);
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        iv_book.setImageResource(R.drawable.book);
+                    }
+                });
             }
             else
             {
