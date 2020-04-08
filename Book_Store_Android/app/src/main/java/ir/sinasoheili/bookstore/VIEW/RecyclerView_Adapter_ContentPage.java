@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -41,7 +40,7 @@ public class RecyclerView_Adapter_ContentPage extends RecyclerView.Adapter<Recyc
     public ListView_ViewHolder_ContentPage onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.recycler_view_item_cotent_page, null , false);
+        View view = inflater.inflate(R.layout.cotent_page_recycler_view_comment_item, null , false);
         ListView_ViewHolder_ContentPage holder = new ListView_ViewHolder_ContentPage(view);
         return holder;
     }

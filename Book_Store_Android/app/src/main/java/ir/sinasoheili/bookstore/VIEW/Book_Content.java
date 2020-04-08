@@ -8,11 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +20,6 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -33,10 +29,8 @@ import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.MODEL.Comment;
 import ir.sinasoheili.bookstore.MODEL.User;
 import ir.sinasoheili.bookstore.PRESENTER.Comment_API;
-import ir.sinasoheili.bookstore.PRESENTER.Image_API;
 import ir.sinasoheili.bookstore.PRESENTER.Like_API;
 import ir.sinasoheili.bookstore.R;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -177,12 +171,12 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void fill_obj()
     {
-        tv_book_name.setText(book.getName());
-        tv_autor_name.setText("نویسنده "+book.getAutor_name());
-        tv_publisher.setText("انتشارات "+book.getPublisher());
-        tv_translator.setText("مترجم "+book.getTranslator());
-        tv_summery_name.setText("توضیحات : "+book.getSummery());
-        tv_group_name.setText("گروه "+book.getGroup_name());
+        tv_book_name.setText    (book.getName());
+        tv_autor_name.setText   (book.getAutor_name());
+        tv_publisher.setText    (book.getPublisher());
+        tv_translator.setText   (book.getTranslator());
+        tv_summery_name.setText (book.getSummery());
+        tv_group_name.setText   (book.getGroup_name());
     }
 
     @Override

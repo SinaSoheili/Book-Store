@@ -8,226 +8,288 @@
     tools:context=".VIEW.Book_Content"
     android:background="@color/content_page_background">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager_book_content"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_bookname_name_book_content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@color/title_text_color"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:layout_alignRight="@id/viewPager_book_content"
+            android:layout_alignLeft="@id/viewPager_book_content"
+            android:layout_below="@id/viewPager_book_content"
+            android:text="name"/>
+
+        <TextView
+            android:id="@+id/tv_autor_name_book_content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_sub_title"
+            android:textColor="@color/sub_title_text_color"
+            android:layout_alignRight="@id/viewPager_book_content"
+            android:layout_alignLeft="@id/viewPager_book_content"
+            android:layout_below="@id/tv_bookname_name_book_content"
+            android:text="autor name"/>
+
+        <LinearLayout
+            android:id="@+id/book_content_continer_widget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_below="@id/tv_autor_name_book_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_comment_book_content"
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/comment"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="30dp"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lav_like_book_content"
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                app:lottie_rawRes="@raw/like"
+                app:lottie_autoPlay="false"
+                android:scaleType="centerCrop"
+                />
+
+            <ImageView
+                android:id="@+id/iv_bag_book_content"
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/bag"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="30dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/book_content_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/book_content_continer_widget"
+            android:background="#7CC1C1C1"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            />
+
+        <TextView
+            android:id="@+id/book_content_summery_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/tv_summery_name_book_content"
+            android:layout_below="@id/book_content_line1"
             android:layout_marginTop="15dp"
-            app:cardCornerRadius="15dp">
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@color/title_text_color"
+            android:textStyle="bold"
+            android:text="توضیحات"
+            />
+
+        <TextView
+            android:id="@+id/tv_summery_name_book_content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@id/book_content_summery_title"
+            android:gravity="right"
+            android:textSize="@dimen/text_size_sub_title"
+            android:textColor="@color/sub_title_text_color"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="6dp"
+            />
+
+        <View
+            android:id="@+id/book_content_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_summery_name_book_content"
+            android:background="#7CC1C1C1"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/book_content_continer_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/book_content_line2"
+            android:layout_marginTop="20dp"
+            android:layout_alignRight="@id/viewPager_book_content"
+            android:layout_alignLeft="@id/viewPager_book_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    android:text="انتشارات\n"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_publisher_book_content"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    android:text="دسته بندی\n"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_group_name_book_content"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    android:text="مترجم\n"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_translator_name_book_content"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_sub_title"
+                    android:textColor="@color/sub_title_text_color"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/book_content_line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/book_content_continer_info"
+            android:background="#7CC1C1C1"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/book_content_line3"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPager_book_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="60dp"
-                    android:layout_marginLeft="60dp"
+                <EditText
+                    android:id="@+id/et_book_comment"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/iv_book_comment_send"
+                    android:gravity="right"
                     />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/iv_book_comment_send"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/viewPager_book_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignRight="@id/viewPager_book_content"
-                    android:layout_alignLeft="@id/viewPager_book_content">
-
-                    <ImageView
-                        android:id="@+id/iv_comment_book_content"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
-                        android:src="@drawable/comment"
-                        android:scaleType="centerCrop"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="40dp"/>
-
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lav_like_book_content"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
-                        app:lottie_rawRes="@raw/like"
-                        app:lottie_autoPlay="false"
-                        android:scaleType="centerCrop"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/iv_bag_book_content"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
-                        android:src="@drawable/bag"
-                        android:scaleType="centerCrop"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="40dp"/>
-
-                </RelativeLayout>
+                    android:layout_alignTop="@id/et_book_comment"
+                    android:layout_alignBottom="@id/et_book_comment"
+                    android:layout_alignParentLeft="true"
+                    android:rotationY="180"
+                    android:padding="10dp"
+                    android:src="@drawable/send"
+                    />
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
-            app:cardCornerRadius="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp">
-
-                <TextView
-                    android:id="@+id/tv_bookname_name_book_content"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_title"
-                    android:textColor="@color/title_text_color"
-                    android:layout_marginTop="20dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_publisher_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                    <TextView
-                        android:id="@+id/tv_autor_name_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:id="@+id/tv_group_name_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                    <TextView
-                        android:id="@+id/tv_translator_name_book_content"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_sub_title"
-                        android:textColor="@color/sub_title_text_color" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_summery_name_book_content"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:gravity="right"
-                    android:textSize="@dimen/text_size_sub_title"
-                    android:textColor="@color/sub_title_text_color"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginBottom="25dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            app:cardCornerRadius="15dp">
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_comment_book_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="15dp"
+                />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp">
+        </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/et_book_comment"
-                        android:layout_height="wrap_content"
-                        android:layout_width="fill_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_toRightOf="@id/iv_book_comment_send"
-                        android:gravity="right"
-                        />
-
-                    <ImageView
-                        android:id="@+id/iv_book_comment_send"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/et_book_comment"
-                        android:layout_alignBottom="@id/et_book_comment"
-                        android:layout_alignParentLeft="true"
-                        android:rotationY="180"
-                        android:padding="10dp"
-                        android:src="@drawable/send"
-                        />
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_comment_book_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>
