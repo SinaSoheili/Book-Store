@@ -171,12 +171,12 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
 
     private void fill_obj()
     {
-        tv_book_name.setText    (book.getName());
-        tv_autor_name.setText   (book.getAutor_name());
-        tv_publisher.setText    (book.getPublisher());
-        tv_translator.setText   (book.getTranslator());
-        tv_summery_name.setText (book.getSummery());
-        tv_group_name.setText   (book.getGroup_name());
+        tv_book_name.setText(book.getName());
+        tv_autor_name.setText(book.getAutor_name());
+        tv_publisher.setText(book.getPublisher()   == null ? "" : book.getPublisher());
+        tv_translator.setText(book.getTranslator() == null ? "" : book.getTranslator());
+        tv_summery_name.setText(book.getSummery()  == null ? "" : book.getSummery());
+        tv_group_name.setText(book.getGroup_name() == null ? "" : book.getGroup_name());
     }
 
     @Override
