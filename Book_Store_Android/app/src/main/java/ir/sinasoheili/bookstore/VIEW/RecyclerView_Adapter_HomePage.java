@@ -92,6 +92,7 @@ public class RecyclerView_Adapter_HomePage extends RecyclerView.Adapter<Recycler
                 }
             });
 
+            iv_book.setImageResource(R.drawable.book); // set this because when scroll list show image repetition
             if(book.getFront_pic() != null)
             {
                 Bitmap bimp = null;
