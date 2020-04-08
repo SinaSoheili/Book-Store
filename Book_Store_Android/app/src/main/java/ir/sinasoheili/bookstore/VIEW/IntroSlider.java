@@ -93,7 +93,7 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
     private void show_content()
     {
         imageview.animate().setStartDelay(30).alpha(0).setDuration(800).rotationX(20).start();
-        tv_content.animate().setStartDelay(30).alpha(0).setDuration(800).rotationY(30).start();
+        tv_content.animate().setStartDelay(30).alpha(0).setDuration(800).start();
 
         new Handler().postDelayed(new Runnable()
         {
@@ -101,13 +101,12 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
             public void run()
             {
                 imageview.setRotationX(20);
-                tv_content.setRotationY(30);
 
                 imageview.setImageResource(id_image[position]);
                 imageview.animate().setStartDelay(100).alpha(1).setDuration(500).rotationX(0).start();
 
                 tv_content.setText(IntroSlider.this.getString(image_title[position]));
-                tv_content.animate().setStartDelay(100).alpha(1).setDuration(500).rotationY(0).start();
+                tv_content.animate().setStartDelay(100).alpha(1).setDuration(500).start();
             }
         } , 830);
 
