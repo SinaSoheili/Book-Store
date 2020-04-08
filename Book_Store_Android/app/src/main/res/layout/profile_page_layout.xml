@@ -10,8 +10,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        app:cardBackgroundColor="@color/profile_top_card_view_background">
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_page_card_background"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,7 +39,7 @@
                 android:layout_toRightOf="@id/iv_profile_profile_page"
                 android:layout_marginLeft="20dp"
                 android:textSize="@dimen/text_size_title"
-                android:textColor="@color/title_text_color"
+                android:textColor="#FFFFFF"
                 android:text="user name"
                 />
 
@@ -46,7 +51,7 @@
         android:id="@+id/tv_email_profile_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:padding="10dp"
         android:gravity="right"
         android:textColor="@color/sub_title_text_color"

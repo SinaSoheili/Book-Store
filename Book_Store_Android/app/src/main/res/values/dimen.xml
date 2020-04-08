@@ -16,4 +16,6 @@
 
     <dimen name="introSlider_text_size">17sp</dimen>
 
+    <dimen name="home_page_title_type">16sp</dimen>
+
 </resources>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@color/login_register_dialog_background">
+    android:background="@drawable/dialog_background">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email_login_dialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
         <EditText
             android:id="@+id/et_email_user_login_dialog"
@@ -28,7 +29,9 @@
         android:id="@+id/til_phone_login_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp">
 
         <EditText
             android:id="@+id/et_phone_user_login_dialog"
@@ -47,6 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
         android:text="ورود"
         android:background="@null"
         android:textColor="@color/submit_button_dialog_text_color"

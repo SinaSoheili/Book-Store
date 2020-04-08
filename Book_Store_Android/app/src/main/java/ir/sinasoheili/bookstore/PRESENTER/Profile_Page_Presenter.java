@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,6 +122,8 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
         dialog.setContentView(view);
         dialog.show();
         dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT , RelativeLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getDecorView().setPadding(40 , 20 , 40 , 20);
 
         btn_submit.setOnClickListener(new View.OnClickListener()
         {
@@ -214,6 +218,8 @@ public class Profile_Page_Presenter implements Profile_Page_Contract.Profile_Pag
         dialog.setContentView(view);
         dialog.show();
         dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT , RelativeLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getDecorView().setPadding(40 , 20 , 40 , 20);
 
         btn_submit.setOnClickListener(new View.OnClickListener()
         {

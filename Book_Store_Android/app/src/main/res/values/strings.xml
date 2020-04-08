@@ -6,12 +6,12 @@
     <string name="bottom_navigation_item_bag_shop">سبد خرید</string>
     <string name="bottom_navigation_item_profile">پروفایل</string>
 
-    <string name="home_page_list_group_top_discount">بیشترین تخفیف :</string>
-    <string name="home_page_list_group_top_sell">پرفروش ترین ها :</string>
-    <string name="home_page_list_group_newest">جدیدترین ها :</string>
-    <string name="home_page_list_group_favorite">محبوب  ترین ها :</string>
+    <string name="home_page_list_group_top_discount">بیشترین تخفیف </string>
+    <string name="home_page_list_group_top_sell">پرفروش ترین ها </string>
+    <string name="home_page_list_group_newest">جدیدترین ها </string>
+    <string name="home_page_list_group_favorite">محبوب  ترین ها </string>
 
-    <string name="search_page_filter_title">جست و جو بر اساس :</string>
+    <string name="search_page_filter_title">جست و جو بر اساس </string>
     <string name="search_page_filter_book_name">نام کتاب</string>
     <string name="search_page_filter_book_autor_name">نام نویسنده</string>
     <string name="search_page_filter_book_group_name">گروه</string>

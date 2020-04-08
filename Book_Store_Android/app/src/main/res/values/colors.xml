@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#FF352A</color>
+    <color name="colorPrimary">#344955</color>
+    <color name="colorPrimaryDark">#232f34</color>
+    <color name="colorAccent">#F9AA33</color>
 
-    <color name="introslider_background">#FFE9A2</color>
-    <color name="home_page_background">#FFE9A2</color>
-    <color name="search_page_background">#FFE9A2</color>
-    <color name="bag_shop_page_background">#FFE9A2</color>
-    <color name="profile_page_background">#FFE9A2</color>
-    <color name="book_bought_page_background">#FFE9A2</color>
-    <color name="content_page_background">#FFE9A2</color>
-    <color name="login_register_dialog_background">#FFE9A2</color>
-    <color name="recycler_view_item_background">#FFE9A2</color>
+    <color name="introslider_background">#344955</color>
+    <color name="home_page_background">#FFFFFF</color>
+    <color name="search_page_background">#FFFFFF</color>
+    <color name="bag_shop_page_background">#FFFFFF</color>
+    <color name="profile_page_background">#FFFFFF</color>
+    <color name="book_bought_page_background">#FFFFFF</color>
+    <color name="content_page_background">#FFFFFF</color>
+    <color name="dialog_background">#FFFFFF</color>
+    <color name="recycler_view_item_background">#FFFFFF</color>
 
-    <color name="bottom_navigation_view_background">#FFDC75</color>
-    <color name="profile_top_card_view_background">#FFDC75</color>
+    <color name="bottom_navigation_view_background">#4A6572</color>
+    <color name="profile_top_card_view_background">#4A6572</color>
     <!--FFEF95-->
 
     <color name="homePage_cardview_background_banner1">#72C3CE</color>
@@ -28,10 +28,10 @@
     <color name="homepage_title3_textcolor">#108075</color>
     <color name="homepage_title4_textcolor">#C41D55</color>
 
-    <color name="searchpage_title_textcolor">#FF352A</color>
+    <color name="searchpage_title_textcolor">#232f34</color>
     <color name="searchpage_sub_title_textcolor">#565F6D</color>
 
-    <color name="BoughtListpage_title_textcolor">#FF352A</color>
+    <color name="BoughtListpage_title_textcolor">#232f34</color>
     <color name="BoughtListpage_sub_title_textcolor">#565F6D</color>
     <color name="BoughtListpage_buy_textcolor">#008577</color>
 
@@ -42,9 +42,12 @@
     <color name="date_comment_text_color">#6F6F6F</color>
     <color name="content_comment_text_color">#353535</color>
 
-    <color name="submit_button_dialog_text_color">#FF352A</color>
+    <color name="submit_button_dialog_text_color">#344955</color>
 
-    <color name="introslider_text_color">#4A4A4A</color>
-    <color name="introslider_btn_color">#FF352A</color>
+    <color name="introslider_text_color">#FFFFFF</color>
+    <color name="introslider_btn_color">#F9AA33</color>
+
+    <color name="bottom_navigation_view_selector_selected">#F9AA33</color>
+    <color name="bottom_navigation_view_selector_noselected">#FFFFFF</color>
 
 </resources>

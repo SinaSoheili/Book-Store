@@ -25,6 +25,8 @@
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
                 android:textColor="@color/homepage_title1_textcolor"
+                android:textStyle="bold"
+                android:textSize="@dimen/home_page_title_type"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -38,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="@dimen/homepage_margin_each_element"
-                app:cardBackgroundColor="@color/homePage_cardview_background_banner1">
+                app:cardBackgroundColor="@color/homePage_cardview_background_banner1"
+                app:cardCornerRadius="15dp">
 
                 <ImageView
                     android:id="@+id/home_page_imageview_banner1"
@@ -61,6 +64,8 @@
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
                 android:textColor="@color/homepage_title2_textcolor"
+                android:textStyle="bold"
+                android:textSize="@dimen/home_page_title_type"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -80,6 +85,8 @@
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
                 android:textColor="@color/homepage_title3_textcolor"
+                android:textStyle="bold"
+                android:textSize="@dimen/home_page_title_type"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -93,7 +100,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="@dimen/homepage_margin_each_element"
-                app:cardBackgroundColor="@color/homePage_cardview_background_banner2">
+                app:cardBackgroundColor="@color/homePage_cardview_background_banner2"
+                app:cardCornerRadius="15dp">
 
                 <ImageView
                     android:id="@+id/home_page_imageview_banner2"
@@ -116,6 +124,8 @@
                 android:layout_marginTop="@dimen/homepage_margin_title_group_top"
                 android:layout_marginBottom="@dimen/homepage_margin_title_group_bottom"
                 android:textColor="@color/homepage_title4_textcolor"
+                android:textStyle="bold"
+                android:textSize="@dimen/home_page_title_type"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

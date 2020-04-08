@@ -34,6 +34,7 @@
             android:layout_below="@id/iv_item_recyclerview_homepage"
             android:textColor="@color/title_text_color"
             android:text="name"
+            android:textStyle="bold"
             />
 
         <TextView
