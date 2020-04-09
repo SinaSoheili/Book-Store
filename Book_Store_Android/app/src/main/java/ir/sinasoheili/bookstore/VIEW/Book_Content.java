@@ -484,7 +484,6 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         circle_continer.removeAllViews();
         for(int i=0 ; i<2 ; i++)
         {
-//            &#9711;
             if(i == position)
             {
                 aiv[i].setImageResource(R.drawable.l_circle);

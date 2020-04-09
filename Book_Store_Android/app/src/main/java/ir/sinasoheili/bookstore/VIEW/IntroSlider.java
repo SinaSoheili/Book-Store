@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
     private ImageView imageview;
     private TextView tv_content;
     private Button btn_next , btn_prev;
+    private LinearLayout circle_container;
+    private ImageView aiv[] = new ImageView[3]; //3 is count of slide
 
     private int id_image[] = {R.drawable.search_introslider , R.drawable.discount_introslider , R.drawable.shoppingbag_introslider};
     private int image_title[] = {R.string.IntroSlider_slide1 , R.string.IntroSlider_slide2 , R.string.IntroSlider_slide3};
@@ -37,6 +40,7 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
         init_obj();
 
         show_content();
+        show_circule();
     }
 
     private void init_obj()
@@ -44,6 +48,13 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
         pref = this.getSharedPreferences(INTROSLIDER_PREF_NAME , MODE_PRIVATE);
         imageview   = findViewById(R.id.iv_introslider);
         tv_content  = findViewById(R.id.tv_introslider);
+
+        circle_container = findViewById(R.id.introslider_circle_continer);
+        for(int i=0 ; i<3 ; i++)
+        {
+            aiv[i] = new ImageView(this);
+            aiv[i].setPadding( 5 , 5 , 5 , 5);
+        }
 
         btn_next    = findViewById(R.id.btn_introslider_next);
         btn_next.setOnClickListener(this);
@@ -63,6 +74,7 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
 
                 position++;
                 show_content();
+                show_circule();
 
                 if(position == id_image.length-1)
                 {
@@ -86,6 +98,7 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
                     btn_prev.setVisibility(View.INVISIBLE);
                 }
                 show_content();
+                show_circule();
             }
         }
     }
@@ -110,5 +123,23 @@ public class IntroSlider extends AppCompatActivity implements View.OnClickListen
             }
         } , 830);
 
+    }
+
+    private void show_circule()
+    {
+        circle_container.removeAllViews();
+        for(int i=0 ; i<3 ; i++)
+        {
+            if(i == position)
+            {
+                aiv[i].setImageResource(R.drawable.l_circle);
+            }
+            else
+            {
+                aiv[i].setImageResource(R.drawable.d_circle);
+            }
+
+            circle_container.addView(aiv[i]);
+        }
     }
 }
