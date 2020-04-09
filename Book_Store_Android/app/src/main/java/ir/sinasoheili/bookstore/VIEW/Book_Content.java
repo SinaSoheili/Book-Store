@@ -153,8 +153,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
                     rv_comment.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT , 600));
                 }
                 Collections.reverse(comment_item);
-                RecyclerView_Adapter_ContentPage adapter = new RecyclerView_Adapter_ContentPage(Book_Content.this , comment_item);
-                rv_comment.setLayoutManager(new LinearLayoutManager(Book_Content.this , LinearLayoutManager.VERTICAL , false));
+                RecyclerView_Comment_Adapter_ContentPage adapter = new RecyclerView_Comment_Adapter_ContentPage(Book_Content.this , comment_item);
+                rv_comment.setLayoutManager(new LinearLayoutManager(Book_Content.this , LinearLayoutManager.HORIZONTAL , true));
                 rv_comment.setAdapter(adapter);
             }
 
@@ -173,10 +173,10 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     {
         tv_book_name.setText(book.getName());
         tv_autor_name.setText(book.getAutor_name());
-        tv_publisher.setText(book.getPublisher()   == null ? "" : book.getPublisher());
-        tv_translator.setText(book.getTranslator() == null ? "" : book.getTranslator());
-        tv_summery_name.setText(book.getSummery()  == null ? "" : book.getSummery());
-        tv_group_name.setText(book.getGroup_name() == null ? "" : book.getGroup_name());
+        tv_publisher.setText(book.getPublisher()   == null ? "-" : book.getPublisher());
+        tv_translator.setText(book.getTranslator() == null ? "-" : book.getTranslator());
+        tv_summery_name.setText(book.getSummery()  == null ? "-" : book.getSummery());
+        tv_group_name.setText(book.getGroup_name() == null ? "-" : book.getGroup_name());
     }
 
     @Override

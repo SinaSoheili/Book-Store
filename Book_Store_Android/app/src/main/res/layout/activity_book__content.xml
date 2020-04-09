@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".VIEW.Book_Content"
     android:background="@color/content_page_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager_book_content"
@@ -95,7 +95,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/book_content_continer_widget"
             android:background="#7CC1C1C1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
             />
@@ -104,9 +104,10 @@
             android:id="@+id/book_content_summery_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@id/tv_summery_name_book_content"
+            android:layout_alignRight="@id/viewPager_book_content"
             android:layout_below="@id/book_content_line1"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="5dp"
             android:textSize="@dimen/text_size_title"
             android:textColor="@color/title_text_color"
             android:textStyle="bold"
@@ -121,8 +122,10 @@
             android:gravity="right"
             android:textSize="@dimen/text_size_sub_title"
             android:textColor="@color/sub_title_text_color"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_alignRight="@id/viewPager_book_content"
+            android:layout_alignLeft="@id/viewPager_book_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="6dp"
             />
 
@@ -132,7 +135,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/tv_summery_name_book_content"
             android:background="#7CC1C1C1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
             />
@@ -143,7 +146,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/book_content_line2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_alignRight="@id/viewPager_book_content"
             android:layout_alignLeft="@id/viewPager_book_content">
 
@@ -239,7 +242,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/book_content_continer_info"
             android:background="#7CC1C1C1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
             />
@@ -249,7 +252,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@id/book_content_line3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 
@@ -265,6 +268,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@id/iv_book_comment_send"
                     android:gravity="right"
+                    android:lines="1"
+                    android:maxLines="1"
                     />
 
                 <ImageView

@@ -23,13 +23,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RecyclerView_Adapter_ContentPage extends RecyclerView.Adapter<RecyclerView_Adapter_ContentPage.ListView_ViewHolder_ContentPage>
+public class RecyclerView_Comment_Adapter_ContentPage extends RecyclerView.Adapter<RecyclerView_Comment_Adapter_ContentPage.ListView_ViewHolder_ContentPage>
 {
     private Context context;
     private ArrayList<Comment> comments;
     private boolean dialog_is_show = false;
 
-    public RecyclerView_Adapter_ContentPage(Context context , ArrayList<Comment> comments)
+    public RecyclerView_Comment_Adapter_ContentPage(Context context , ArrayList<Comment> comments)
     {
         this.context = context;
         this.comments = comments;
