@@ -8,8 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -54,6 +56,8 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rv_comment;
     private ImageView iv_send_comment;
     private EditText et_comment ;
+    private LinearLayout circle_continer;
+    private ImageView aiv[] = new ImageView[2]; // text view for show circle in view pager of image
 
     private boolean like_state = false;
     private boolean added_to_shop_list = false;
@@ -100,6 +104,13 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     private void init_obj()
     {
         viewpager = findViewById(R.id.viewPager_book_content);
+        circle_continer = findViewById(R.id.book_content_circle_pager_continer);
+
+        for(int i=0 ; i<2 ; i++) // 2 is count of image show in view pager
+        {
+            aiv[i] = new ImageView(getApplicationContext());
+            aiv[i].setPadding(5 , 5, 5 , 5);
+        }
 
         iv_comment = findViewById(R.id.iv_comment_book_content);
         iv_comment.setOnClickListener(this);
@@ -131,6 +142,25 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
     {
         ViewPager_Adapter_BookContetnt adapter = new ViewPager_Adapter_BookContetnt(this ,book.getFront_pic() , book.getBack_pic());
         viewpager.setAdapter(adapter);
+        show_circle(0);
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+                show_circle(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+            }
+        });
     }
 
     private void init_comment()
@@ -447,5 +477,23 @@ public class Book_Content extends AppCompatActivity implements View.OnClickListe
         });
         dialog.show();
         dialog_is_show = true;
+    }
+
+    private void show_circle(int position)
+    {
+        circle_continer.removeAllViews();
+        for(int i=0 ; i<2 ; i++)
+        {
+//            &#9711;
+            if(i == position)
+            {
+                aiv[i].setImageResource(R.drawable.l_circle);
+            }
+            else
+            {
+                aiv[i].setImageResource(R.drawable.d_circle);
+            }
+            circle_continer.addView(aiv[i]);
+        }
     }
 }
