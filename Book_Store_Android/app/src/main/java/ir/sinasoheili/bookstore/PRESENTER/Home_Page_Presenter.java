@@ -95,6 +95,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
 
                 ArrayList<Book> items = response.body();
                 home_page_view.show_rv_top_sell(items);
+
+                //show banner 1
+                home_page_view.fill_banner(1 , items.get(items.size()-1));
             }
 
             @Override
@@ -129,6 +132,9 @@ public class Home_Page_Presenter implements Home_Page_Contract.Home_Page_Present
             {
                 ArrayList<Book> items = response.body();
                 home_page_view.show_rv_newest(items);
+
+                //show banner 0
+                home_page_view.fill_banner(0 , items.get(items.size()-1));
             }
 
             @Override

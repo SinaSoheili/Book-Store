@@ -18,6 +18,7 @@ public interface Home_Page_Contract
         public void show_rv_favoriot(ArrayList<Book> items);
         public void show_progress_bar();
         public void gone_progress_bar();
+        public void fill_banner(int banner_num , Book book);
     }
 
     public interface Home_Page_Presenter

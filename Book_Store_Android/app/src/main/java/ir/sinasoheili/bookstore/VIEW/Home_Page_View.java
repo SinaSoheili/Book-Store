@@ -2,13 +2,18 @@ package ir.sinasoheili.bookstore.VIEW;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +26,13 @@ import java.util.ArrayList;
 import ir.sinasoheili.bookstore.MODEL.Book;
 import ir.sinasoheili.bookstore.PRESENTER.Home_Page_Contract;
 import ir.sinasoheili.bookstore.PRESENTER.Home_Page_Presenter;
+import ir.sinasoheili.bookstore.PRESENTER.Image_API;
 import ir.sinasoheili.bookstore.R;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_Page_View
 {
@@ -29,11 +40,15 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
 
     private View root_view;
     private RecyclerView rv_top_discount , rv_top_sell , rv_newest , rv_favoriot;
+
     private ImageView iv_banner1 , iv_banner2;
+    private TextView tv_banner1_name , tv_banner1_summery , tv_banner2_name , tv_banner2_summery;
 
     private ProgressBar progressbar;
 
     private Home_Page_Contract.Home_Page_Presenter presenter;
+
+    private Bitmap bimp_banner = null;
 
     @Nullable
     @Override
@@ -61,10 +76,17 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
         rv_newest       = root_view.findViewById(R.id.home_page_recyclerview_newest);
         rv_favoriot     = root_view.findViewById(R.id.home_page_recyclerview_favoriot);
 
-        iv_banner1 = root_view.findViewById(R.id.home_page_imageview_banner1);
-        iv_banner2 = root_view.findViewById(R.id.home_page_imageview_banner2);
-
         progressbar = root_view.findViewById(R.id.Home_page_progress_bar);
+
+        iv_banner1 = root_view.findViewById(R.id.homepage_imageview_banner1);
+        tv_banner1_name = root_view.findViewById(R.id.homepage_textview_name_banner1);
+        tv_banner1_summery = root_view.findViewById(R.id.homepage_textview_summery_banner1);
+        tv_banner1_summery.setMovementMethod(new ScrollingMovementMethod());
+
+        iv_banner2 = root_view.findViewById(R.id.homepage_imageview_banner2);
+        tv_banner2_name = root_view.findViewById(R.id.homepage_textview_name_banner2);
+        tv_banner2_summery = root_view.findViewById(R.id.homepage_textview_summery_banner2);
+        tv_banner2_summery.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
@@ -145,5 +167,79 @@ public class Home_Page_View extends Fragment implements Home_Page_Contract.Home_
     public void gone_progress_bar()
     {
         progressbar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void fill_banner(final int banner_num, final Book book)
+    {
+        if(banner_num == 0)
+        {
+            tv_banner1_name.setText(book.getName());
+            tv_banner1_summery.setText(book.getSummery());
+        }
+        else if(banner_num == 1)
+        {
+            tv_banner2_name.setText(book.getName());
+            tv_banner2_summery.setText(book.getSummery());
+        }
+
+        if(book.getFront_pic() != null)
+        {
+            if( (bimp_banner = MainActivity.cache.get(book.getFront_pic())) == null)
+            {
+                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl(Image_API.base_url)
+                                        .build();
+
+                Image_API api = retrofit.create(Image_API.class);
+                Call<ResponseBody> call = api.get_image(Image_API.folder_url+book.getFront_pic()+".jpg");
+                call.enqueue(new Callback<ResponseBody>()
+                {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    {
+                        bimp_banner = BitmapFactory.decodeStream(response.body().byteStream());
+                        MainActivity.cache.put(book.getFront_pic() , bimp_banner);
+
+                        if(banner_num == 0)
+                        {
+                            iv_banner1.setImageBitmap(bimp_banner);
+                        }
+                        else if(banner_num == 1)
+                        {
+                            iv_banner2.setImageBitmap(bimp_banner);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    {
+                        bimp_banner = BitmapFactory.decodeResource(getContext().getResources() , R.drawable.book);
+
+                        if(banner_num == 0)
+                        {
+                            iv_banner1.setImageBitmap(bimp_banner);
+                        }
+                        else if(banner_num == 1)
+                        {
+                            iv_banner2.setImageBitmap(bimp_banner);
+                        }
+                    }
+                });
+            }
+        }
+        else
+        {
+            bimp_banner = BitmapFactory.decodeResource(this.getResources() , R.drawable.book);
+
+            if(banner_num == 0)
+            {
+                iv_banner1.setImageBitmap(bimp_banner);
+            }
+            else if(banner_num == 1)
+            {
+                iv_banner2.setImageBitmap(bimp_banner);
+            }
+        }
     }
 }
