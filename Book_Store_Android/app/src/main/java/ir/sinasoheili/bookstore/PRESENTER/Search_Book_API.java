@@ -8,8 +8,8 @@ import retrofit2.http.Query;
 
 public interface Search_Book_API
 {
-//    public static final String base_url = "http://sinasoheili.ir/";
-    public static final String base_url = "http://10.0.2.2/book_store_server/";
+    public static final String base_url = "http://sinasoheili.ir/";
+//    public static final String base_url = "http://10.0.2.2/book_store_server/";
 
     @GET("search_book.php?search_type=id")
     Call<ArrayList<Book>> search_book_by_id(@Query("id") int id);

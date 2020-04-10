@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bag_shop_page = new Bag_Shop_Page_View();
         profile_page = new Profile_Page_View();
 
-        cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory()/6));
+        cache = new LruCache<>((int)(Runtime.getRuntime().freeMemory()/4));
     }
 
     public void check_connection()
