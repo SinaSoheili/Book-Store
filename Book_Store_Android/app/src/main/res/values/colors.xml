@@ -5,22 +5,22 @@
     <color name="colorAccent">#F9AA33</color>
 
     <color name="introslider_background">#344955</color>
-    <color name="home_page_background">#FFFFFF</color>
-    <color name="search_page_background">#FFFFFF</color>
-    <color name="bag_shop_page_background">#FFFFFF</color>
-    <color name="profile_page_background">#FFFFFF</color>
-    <color name="book_bought_page_background">#FFFFFF</color>
-    <color name="content_page_background">#FFFFFF</color>
-    <color name="dialog_background">#FFFFFF</color>
-    <color name="recycler_view_item_background">#FFFFFF</color>
+    <color name="home_page_background">#FFF1C9</color>
+    <color name="search_page_background">#FFF1C9</color>
+    <color name="bag_shop_page_background">#FFF1C9</color>
+    <color name="profile_page_background">#FFF1C9</color>
+    <color name="book_bought_page_background">#FFF1C9</color>
+    <color name="content_page_background">#FFF1C9</color>
+    <color name="dialog_background">#F4DE9C</color>
+    <color name="recycler_view_item_background">#FFF1C9</color>
 
     <color name="bottom_navigation_view_background">#4A6572</color>
     <color name="profile_top_card_view_background">#4A6572</color>
     <!--FFEF95-->
 
-    <color name="homePage_cardview_background_banner1">#FFFCE6</color>
+    <color name="homePage_cardview_background_banner1">#E3E6ED</color>
     <!--00BCD4-->
-    <color name="homePage_cardview_background_banner2">#E0FFFC</color>
+    <color name="homePage_cardview_background_banner2">#F3EDFD</color>
     <!--FFC107-->
 
     <color name="homepage_title1_textcolor">#FF5722</color>

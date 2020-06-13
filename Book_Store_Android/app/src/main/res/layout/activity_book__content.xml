@@ -15,7 +15,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager_book_content"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="330dp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="60dp"
