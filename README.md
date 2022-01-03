@@ -1,9 +1,10 @@
 # Book-Store
 <div>
   <p>
-    this project is sample simple of book store .<br>
-    you can see list of book group by <i>top sell</i> ,  <i>top discount</i> , <i>newest</i> , ... .<br>
-    also you can search in book and find book acording to <i>autor name</i> , <i>book name</i> and  <i>group</i>.<br>
+    this project is simple sample of a Book Store .<br>
+    you can see list of books filtered by <i>top sell</i> ,  <i>top discount</i> , <i>newest</i> and so on<br>
+    also you can search in books and find books acording to <i>autor name</i> , <i>book name</i> and  <i>group</i>.<br>
+    It's not a real app actually but it's a base project for online shop and a sandbox to learn.
     <br>
   </p>
   
